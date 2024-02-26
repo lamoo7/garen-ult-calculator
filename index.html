@@ -46,53 +46,52 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-    const ranks = document.querySelectorAll('.rank input');
-    const input = document.querySelector('input[type="number"]');
-    const button = document.querySelector('button');
-    const result = document.querySelector('p span');
+            const ranks = document.querySelectorAll('.rank input');
+            const input = document.querySelector('input[type="number"]');
+            const button = document.querySelector('button');
+            const result = document.querySelector('p span');
 
-    // Check the first radio button by default
-    ranks[0].checked = true;
-    ranks[0].parentNode.querySelector('.fa-check').style.display = 'inline-block';
+            ranks[0].checked = true;
+            ranks[0].parentNode.querySelector('.fa-check').style.display = 'inline-block';
 
-    ranks.forEach(rank => {
-        rank.addEventListener('change', function () {
             ranks.forEach(rank => {
-                rank.parentNode.querySelector('.fa-check').style.display = 'none';
+                rank.addEventListener('change', function () {
+                    ranks.forEach(rank => {
+                        rank.parentNode.querySelector('.fa-check').style.display = 'none';
+                    });
+                    if (this.checked) {
+                        this.parentNode.querySelector('.fa-check').style.display = 'inline-block';
+                    }
+                });
             });
-            if (this.checked) {
-                this.parentNode.querySelector('.fa-check').style.display = 'inline-block';
-            }
+
+            button.addEventListener('click', function () {
+                const maxHP = parseInt(input.value);
+                const selectedRank = document.querySelector('input[name="rank"]:checked').value;
+
+                const calculateDmg = (maxHP, baseDmg, missingHpPerc) => {
+                    const threshold = Math.floor((100 * baseDmg + missingHpPerc * maxHP) / (100 + missingHpPerc));
+                    return Math.min(threshold, maxHP);
+                }
+
+                let baseDamage = 0;
+                let missingHealthPercent = 0;
+
+                if (selectedRank === "1") {
+                    baseDamage = 150;
+                    missingHealthPercent = 25;
+                } else if (selectedRank === "2") {
+                    baseDamage = 300;
+                    missingHealthPercent = 30;
+                } else if (selectedRank === "3") {
+                    baseDamage = 450;
+                    missingHealthPercent = 35;
+                }
+
+                const damage = calculateDmg(maxHP, baseDamage, missingHealthPercent);
+                result.textContent = damage.toLocaleString("en-US");
+            });
         });
-    });
-
-    button.addEventListener('click', function () {
-        const maxHP = parseInt(input.value);
-        const selectedRank = document.querySelector('input[name="rank"]:checked').value;
-
-        const calculateDmg = (maxHP, baseDmg, missingHpPerc) => {
-            const threshold = Math.floor((100 * baseDmg + missingHpPerc * maxHP) / (100 + missingHpPerc));
-            return Math.min(threshold, maxHP);
-        }
-
-        let baseDamage = 0;
-        let missingHealthPercent = 0;
-
-        if (selectedRank === "1") {
-            baseDamage = 150;
-            missingHealthPercent = 25;
-        } else if (selectedRank === "2") {
-            baseDamage = 300;
-            missingHealthPercent = 30;
-        } else if (selectedRank === "3") {
-            baseDamage = 450;
-            missingHealthPercent = 35;
-        }
-
-        const damage = calculateDmg(maxHP, baseDamage, missingHealthPercent);
-        result.textContent = damage.toLocaleString("en-US");
-    });
-});
 
     </script>
 </body>

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
+
+body {
+    min-block-size: 100vh;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-family: Manrope;
+
+    background: url("Garen.jpg");
+    background-color: #00000051;
+    background-blend-mode: multiply;
+    background-position: 90% center;
+    background-attachment: fixed;
+    background-size: cover;
+
+    display: grid;
+    place-items: center;
+
+    * {
+        box-sizing: border-box;
+    }
+}
+
+#container {
+    background-color: #a89777a0;
+    padding: 5em;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+
+    label {
+        position: relative;
+        cursor: pointer;
+    }
+
+    img {
+        height: 5em;
+        aspect-ratio: 1;
+        margin: 1em;
+
+        border: 4px #313862 solid;
+        border-radius: 4px
+    }
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.fa-solid.fa-check {
+    position: absolute;
+    top: 1.1em;
+    right: 1.1em;
+    color: #dcddde;
+    z-index: 99;
+    background-color: #313862aa;
+    padding: 5px;
+    border-radius: 5px;
+    
+    display: none;
+}
+
+
+input {
+    width: 100%;
+    outline-color: #313862;
+    margin: 1em;
+    color: #026d0b;
+    font-weight: bolder;
+    font-size: 1.5em;
+    padding-block: 0.5em;
+}
+
+p {
+    font-size: 1.75em;
+
+    span {
+        color: #b40000;
+    }
+}
+
+button {
+    background: linear-gradient(-45deg, #107AB0, #313862);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 21px;
+    outline: none;
+    overflow: hidden;
+    color: #FFF;
+    font-size: 28px;
+    cursor: pointer;
+    text-decoration: none;
+    z-index: 101;
+}
+
+button:hover {
+    animation: press 0.5s ease;
+}
+
+button:active{
+    scale: 0.90;
+}
+
+@keyframes press {
+    50% {
+        transform: translateY(5px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}

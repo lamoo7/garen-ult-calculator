@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Garen Ult Range Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/c48f0d09a5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="container">
+
+        <header>
+            <label class="rank">
+                <input type="radio" name="rank" value="1">
+                <img src="Demacian_Justice.webp" alt="ult-rank-1">
+                <i class="fa-solid fa-check"></i>
+            </label>
+            <label class="rank">
+                <input type="radio" name="rank" value="2">
+                <img src="Demacian_Justice.webp" alt="ult-rank-2">
+                <i class="fa-solid fa-check"></i>
+            </label>
+            <label class="rank">
+                <input type="radio" name="rank" value="3">
+                <img src="Demacian_Justice.webp" alt="ult-rank-3">
+                <i class="fa-solid fa-check"></i>
+            </label>
+        </header>
+
+
+        <input type="number" placeholder="Insert here the total HP the enemy has">
+
+        <button>Demacia!</button>
+
+        <p>The enemy needs to be at <span>0 HP</span> in order for justice to be served.</p>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ranks = document.querySelectorAll('.rank input');
+            const input = document.querySelector('input[type="number"]');
+            const button = document.querySelector('button');
+            const result = document.querySelector('p span');
+
+            // Check the first radio button by default
+            ranks[0].checked = true;
+            ranks[0].parentNode.querySelector('.fa-check').style.display = 'inline-block';
+
+            ranks.forEach(rank => {
+                rank.addEventListener('change', function () {
+                    ranks.forEach(rank => {
+                        rank.parentNode.querySelector('.fa-check').style.display = 'none';
+                    });
+                    if (this.checked) {
+                        this.parentNode.querySelector('.fa-check').style.display = 'inline-block';
+                    }
+                });
+            });
+
+            button.addEventListener('click', function () {
+                const maxHP = parseInt(input.value);
+                const selectedRank = document.querySelector('input[name="rank"]:checked').value;
+                let missingHealthPercent = 0.25;
+
+                if (selectedRank === "2") {
+                    missingHealthPercent = 0.3;
+                } else if (selectedRank === "3") {
+                    missingHealthPercent = 0.35;
+                }
+
+                const baseDamage = parseInt(selectedRank) * 150;
+                const missingHealthDamage = missingHealthPercent * maxHP;
+                const totalDamage = baseDamage + missingHealthDamage;
+
+                result.textContent = totalDamage.toFixed(0);
+            });
+        });
+    </script>
+</body>
+
+</html>

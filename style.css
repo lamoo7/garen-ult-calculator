@@ -29,6 +29,15 @@ body {
     place-items: center;
 }
 
+#ranks-display {
+    display: flex;
+    justify-content: space-around;
+
+    span {
+        margin-inline: 2em;
+    }
+}
+
 header {
     display: flex;
     justify-content: space-around;

@@ -10,6 +10,26 @@
 </head>
 
 <body>
+
+    <div id="background-change">
+        <i class="fa-solid fa-pencil" tabindex="0"></i>
+
+        <div id="pics">
+            <img src="Garen_OriginalCircle.webp" alt="default" data-bg-url="Garen.jpg">
+            <img src="Garen_SteelLegionCircle.webp" alt="steel legion" data-bg-url="Garen_Steel-LegionSkin.jpg">
+            <img src="Garen_WarringKingdomsCircle.webp" alt="warring kingdoms"
+                data-bg-url="Garen_Warring-KingdomsSkin.jpg">
+            <img src="Garen_God-KingCircle.webp" alt="god king" data-bg-url="Garen_God-KingSkin.jpg">
+            <img src="Garen_DemaciaViceCircle.webp" alt="demacia vice" data-bg-url="Garen_Demacia-ViceSkin.jpg">
+            <img src="Garen_MechaKingdomsCircle.webp" alt="mecha kingdoms" data-bg-url="Garen_Mecha-KingdomsSkin.jpg">
+            <img src="Garen_PrestigeMechaKingdomsCircle.webp" alt="mecha kingdoms prestige"
+                data-bg-url="Garen_Mecha-Kingdoms-PrestigeSkin.jpg">
+            <img src="Garen_BattleAcademiaCircle.webp" alt="battle academia"
+                data-bg-url="Garen_Battle-AcademiaSkin.jpg">
+            <img src="Garen_MythmakerCircle.webp" alt="mythmaker" data-bg-url="Garen_MythmakerSkin.jpg">
+        </div>
+    </div>
+
     <div id="container">
 
         <div id="ranks-display">
@@ -64,6 +84,61 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            const backgroundChangeDiv = document.getElementById('background-change');
+            const images = backgroundChangeDiv.querySelectorAll('img');
+            const backgroundImages = [
+                'Garen.jpg',
+                'Garen_Steel-LegionSkin.jpg',
+                'Garen_Warring-KingdomsSkin.jpg',
+                'Garen_God-KingSkin.jpg',
+                'Garen_Demacia-ViceSkin.jpg',
+                'Garen_Mecha-KingdomsSkin.jpg',
+                'Garen_Mecha-Kingdoms-PrestigeSkin.jpg',
+                'Garen_Battle-AcademiaSkin.jpg',
+                'Garen_MythmakerSkin.jpg'
+            ];
+
+            function preloadImages() {
+                backgroundImages.forEach(imageUrl => {
+                    const img = new Image();
+                    img.src = imageUrl;
+                });
+            }
+
+            preloadImages();
+
+            images.forEach(image => {
+                image.addEventListener('click', function () {
+                    const bgUrl = this.dataset.bgUrl;
+                    fadeBackground(bgUrl);
+                    changeContainerBackgroundColor(bgUrl);
+                });
+            });
+
+            const fadeBackground = (bgUrl) => {
+                const body = document.body;
+                body.style.opacity = '0';
+
+                setTimeout(() => {
+                    body.style.backgroundImage = `url(${bgUrl})`;
+
+                }, 500);
+
+                setTimeout(() => {
+                    body.style.opacity = '1';
+                }, 1150)
+            };
+
+            const changeContainerBackgroundColor = (bgUrl) => {
+                const container = document.getElementById('container');
+                const specialBackgrounds = ['Garen_Steel-LegionSkin.jpg', 'Garen_God-KingSkin.jpg', 'Garen_Demacia-ViceSkin.jpg', 'Garen_Mecha-KingdomsSkin.jpg'];
+                if (specialBackgrounds.includes(bgUrl.split('/').pop())) {
+                    container.style.backgroundColor = '#7da8ada0';
+                } else {
+                    container.style.backgroundColor = '';
+                }
+            };
+
             const ranks = document.querySelectorAll('.rank input');
             const input = document.querySelector('input[type="number"]');
             const modifiers = document.querySelectorAll('input[type="checkbox"]');
@@ -119,8 +194,8 @@
                 return Math.min(threshold, maxHP);
             }
         });
-
     </script>
+
 </body>
 
 </html>

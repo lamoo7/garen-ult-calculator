@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
 
+* {
+    box-sizing: border-box;
+    transition: all 125ms ease;
+}
+
 body {
     min-block-size: 100vh;
     margin: 0;
@@ -16,9 +21,7 @@ body {
     display: grid;
     place-items: center;
 
-    * {
-        box-sizing: border-box;
-    }
+    transition: all 150ms ease-in-out;
 }
 
 #container {
@@ -123,7 +126,7 @@ button:active {
 .i {
     justify-self: self-start;
     font-size: 0.75em;
-    font-style: oblique;
+    font-style: italic;
 }
 
 #input-modifiers {
@@ -154,4 +157,36 @@ input {
 
 label:has(input[type="checkbox"]:checked) img {
     border: 6px #313862 solid !important;
+}
+
+#background-change {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#background-change i {
+    background: #00000051;
+    font-size: 1.5em;
+    padding: 0.5em;
+    color: #dcddde;
+    cursor: pointer;
+}
+
+#background-change i:focus + #pics,
+#pics:hover {
+    display: flex;
+}
+
+#pics {
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#pics img {
+    background-color: #313862;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0.15em;
 }

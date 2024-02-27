@@ -72,13 +72,13 @@ label:has(input[type="radio"]:checked) img {
 
 .fa-solid.fa-check {
     position: absolute;
-    top: 1.1em;
-    right: 1.1em;
+    top: calc(1.1em + 4px);
+    right: calc(1.1em + 4px);
     color: #dcddde;
     z-index: 99;
     background-color: #313862aa;
     padding: 5px;
-    border-radius: 5px;
+    border-bottom-left-radius: 5px;
 
     display: none;
 }
@@ -146,13 +146,20 @@ button:active {
 }
 
 input {
-    width: 100%;
     outline-color: #313862;
     margin: 1em;
     color: #026d0b;
     font-weight: bolder;
     font-size: 1.5em;
     padding-block: 0.5em;
+}
+
+input[type="range"] {
+    width: 100%;
+}
+
+input[type="number"] {
+    width: 10ch;
 }
 
 label:has(input[type="checkbox"]:checked) img {

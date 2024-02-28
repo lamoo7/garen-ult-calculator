@@ -22,26 +22,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     preloadImages();
 
-    images.forEach(image => {
-        image.addEventListener('click', function () {
-            const bgUrl = this.dataset.bgUrl;
-            fadeBackground(bgUrl);
-            changeContainerBackgroundColor(bgUrl);
-        });
-    });
-
-    const fadeBackground = (bgUrl) => {
+    const fadeBackground = (bgUrl, manualChange = false) => {
         const body = document.body;
-        body.style.opacity = '0';
-
-        setTimeout(() => {
+        if (!manualChange) {
             body.style.backgroundImage = `url(${bgUrl})`;
+        } else {
+            body.style.opacity = '0';
 
-        }, 500);
+            setTimeout(() => {
+                body.style.backgroundImage = `url(${bgUrl})`;
+            }, 500);
 
-        setTimeout(() => {
-            body.style.opacity = '1';
-        }, 1150)
+            setTimeout(() => {
+                body.style.opacity = '1';
+            }, 1150);
+        }
     };
 
     const changeContainerBackgroundColor = (bgUrl) => {
@@ -60,6 +55,20 @@ document.addEventListener('DOMContentLoaded', function () {
     const modifiers = document.querySelectorAll('input[type="checkbox"]');
     const button = document.querySelector('button');
     const result = document.querySelector('p span');
+
+    // Retrieve last chosen background from localStorage
+    const lastChosenBackground = localStorage.getItem('chosenBackground');
+
+    if (lastChosenBackground) {
+        fadeBackground(lastChosenBackground);
+        changeContainerBackgroundColor(lastChosenBackground);
+    } else {
+        // Set a default background if none is chosen
+        const defaultBackground = backgroundImages[0];
+        localStorage.setItem('chosenBackground', defaultBackground);
+        fadeBackground(defaultBackground);
+        changeContainerBackgroundColor(defaultBackground);
+    }
 
     ranks[0].checked = true;
     ranks[0].parentNode.querySelector('.fa-check').style.display = 'inline-block';
@@ -111,6 +120,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     numberInput.addEventListener('input', function () {
         slider.value = this.value;
+    });
+
+    images.forEach(image => {
+        image.addEventListener('click', function () {
+            const bgUrl = this.dataset.bgUrl;
+            fadeBackground(bgUrl, true);
+            changeContainerBackgroundColor(bgUrl);
+            localStorage.setItem('chosenBackground', bgUrl); // Save chosen background to localStorage
+        });
     });
 
     const calculateDmg = (maxHP, baseDmg, missingHpPerc) => {

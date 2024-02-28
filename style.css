@@ -11,17 +11,16 @@ body {
     scroll-behavior: smooth;
     font-family: Manrope;
 
-    background: url("Garen.jpg");
     background-color: #00000051;
     background-blend-mode: multiply;
-    background-position: 90% center;
+    background-position: center;
     background-attachment: fixed;
     background-size: cover;
 
     display: grid;
     place-items: center;
 
-    transition: all 150ms ease-in-out;
+    transition: all 250ms ease-in-out;
 }
 
 #container {
@@ -67,13 +66,13 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 label:has(input[type="radio"]:checked) img {
-    border: 6px #313862 solid;
+    border: 8px #107AB0 solid;
 }
 
 .fa-solid.fa-check {
     position: absolute;
-    top: calc(1.1em + 4px);
-    right: calc(1.1em + 4px);
+    top: calc(1.1em + 8px);
+    right: calc(1.1em + 8px);
     color: #dcddde;
     z-index: 99;
     background-color: #313862aa;
@@ -102,7 +101,6 @@ button {
     font-size: 28px;
     cursor: pointer;
     text-decoration: none;
-    z-index: 101;
 }
 
 button:hover {
@@ -163,7 +161,7 @@ input[type="number"] {
 }
 
 label:has(input[type="checkbox"]:checked) img {
-    border: 6px #313862 solid !important;
+    border: 6px #107AB0 solid !important;
 }
 
 #background-change {
@@ -196,4 +194,9 @@ label:has(input[type="checkbox"]:checked) img {
     border-radius: 50%;
     cursor: pointer;
     margin: 0.15em;
+}
+
+
+label:has(input:not(:checked)) img {
+    filter: grayscale(.7);
 }

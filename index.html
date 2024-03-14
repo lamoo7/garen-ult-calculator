@@ -57,7 +57,7 @@
 
         <div id="input-modifiers">
             <input type="range" id="hp-slider" min="500" max="10000" value="500">
-            <input type="number" id="hp-input" placeholder="enemy HP" value="500">
+            <input type="number" id="hp-input" placeholder="enemy HP">
             
             <label>
                 <input type="checkbox" name="modifier" value="12">
@@ -72,6 +72,10 @@
         <button>Demacia!</button>
 
         <p>The enemy needs to be at <span>0 HP</span> in order for justice to be served.</p>
+        
+
+        <progress class="hp-bar" value="100" max="100"></progress>
+
 
         <p class="i">* Garen's ultimate deals 150 / 300 / 450 (+ 25 / 30 / 35% of target's missing health) true damage.
         </p>
@@ -80,7 +84,7 @@
             benefit from one stack, the second from two, and so on.</p>
         <p class="i">* Navori Quickblades increases your damage dealt by abilities by 0% − 20% (based on critical strike
             chance, 4% for every 20%).</p>
-        <p class="i">* Spear of Shojin and Navori Quickblades damage amplifiers are calculated at full stacks.</p>
+        <p class="i">* When selected, Spear of Shojin and Navori Quickblades damage amplifiers are calculated at full stacks (4 stacks for Spear of Shojin, and 100% crit chance for Navori Quickblades).</p>
 
     </div>
 

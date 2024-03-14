@@ -1,4 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const progressElement = document.querySelector('progress');
+    const ranks = document.querySelectorAll('.rank input');
+    const slider = document.querySelector('input[type="range"]');
+    const numberInput = document.querySelector('input[type="number"]');
+    const modifiers = document.querySelectorAll('input[type="checkbox"]');
+    const button = document.querySelector('button');
+    const result = document.querySelector('p span');
+
     const backgroundChangeDiv = document.getElementById('background-change');
     const images = backgroundChangeDiv.querySelectorAll('img');
     const backgroundImages = [
@@ -48,13 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
             container.style.backgroundColor = '';
         }
     };
-
-    const ranks = document.querySelectorAll('.rank input');
-    const slider = document.querySelector('input[type="range"]');
-    const numberInput = document.querySelector('input[type="number"]');
-    const modifiers = document.querySelectorAll('input[type="checkbox"]');
-    const button = document.querySelector('button');
-    const result = document.querySelector('p span');
 
     // Retrieve last chosen background from localStorage
     const lastChosenBackground = localStorage.getItem('chosenBackground');
@@ -112,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         result.textContent = totalDamage.toFixed(0) + " HP";
+
+        // Update progress element attributes
+        progressElement.value = totalDamage;
+        progressElement.max = maxHP;
     });
 
     slider.addEventListener('input', function () {

@@ -157,7 +157,7 @@ input[type="range"] {
 }
 
 input[type="number"] {
-    width: 10ch;
+    width: 11ch;
 }
 
 label:has(input[type="checkbox"]:checked) img {
@@ -199,4 +199,20 @@ label:has(input[type="checkbox"]:checked) img {
 
 label:has(input:not(:checked)) img {
     filter: grayscale(.7);
+}
+
+.hp-bar {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #4d4a46;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+}
+
+.hp-bar::-webkit-progress-value {
+    background: linear-gradient(#c17a70, #a2261f, #551a17);
+}
+
+.hp-bar::-webkit-progress-bar {
+    background-color: #0d0d0b;
 }

@@ -216,3 +216,16 @@ label:has(input:not(:checked)) img {
 .hp-bar::-webkit-progress-bar {
     background-color: #0d0d0b;
 }
+
+select {
+    -webkit-appearance: none;
+    appearance: none;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+    
+    border: none;
+    padding: 7px 27px 7px 10px;
+    background: #ddd url(http://new.mitoo.co/assets/to_be_sorted/arrow_down.png) no-repeat 90% 50%; 
+}
+  

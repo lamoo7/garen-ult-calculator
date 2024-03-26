@@ -10,15 +10,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const backgroundChangeDiv = document.getElementById('background-change');
     const images = backgroundChangeDiv.querySelectorAll('img');
     const backgroundImages = [
-        'Garen.jpg',
-        'Garen_Steel-LegionSkin.jpg',
-        'Garen_Warring-KingdomsSkin.jpg',
-        'Garen_God-KingSkin.jpg',
-        'Garen_Demacia-ViceSkin.jpg',
-        'Garen_Mecha-KingdomsSkin.jpg',
-        'Garen_Mecha-Kingdoms-PrestigeSkin.jpg',
-        'Garen_Battle-AcademiaSkin.jpg',
-        'Garen_MythmakerSkin.jpg'
+        'img/Garen.jpg',
+        'img/Garen_Steel-LegionSkin.jpg',
+        'img/Garen_Warring-KingdomsSkin.jpg',
+        'img/Garen_God-KingSkin.jpg',
+        'img/Garen_Demacia-ViceSkin.jpg',
+        'img/Garen_Mecha-KingdomsSkin.jpg',
+        'img/Garen_Mecha-Kingdoms-PrestigeSkin.jpg',
+        'img/Garen_Battle-AcademiaSkin.jpg',
+        'img/Garen_MythmakerSkin.jpg'
     ];
 
     function preloadImages() {
@@ -70,6 +70,15 @@ document.addEventListener('DOMContentLoaded', function () {
         fadeBackground(defaultBackground);
         changeContainerBackgroundColor(defaultBackground);
     }
+    
+    images.forEach(image => {
+        image.addEventListener('click', function () {
+            const bgUrl = this.dataset.bgUrl;
+            fadeBackground(bgUrl, true);
+            changeContainerBackgroundColor(bgUrl);
+            localStorage.setItem('chosenBackground', bgUrl); // Save chosen background to localStorage
+        });
+    });
 
     ranks[0].checked = true;
     ranks[0].parentNode.querySelector('.fa-check').style.display = 'inline-block';
@@ -83,6 +92,20 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.parentNode.querySelector('.fa-check').style.display = 'inline-block';
             }
         });
+    });
+
+    const select = document.getElementById('critChance');
+    
+    navori.addEventListener("change", () => {
+      if (navori.checked) {
+        select.disabled = false;
+      } else {
+        select.disabled = true;
+      }
+    });
+
+    select.addEventListener('change', function() {
+        navori.value = this.value;
     });
 
     button.addEventListener('click', function () {
@@ -125,15 +148,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     numberInput.addEventListener('input', function () {
         slider.value = this.value;
-    });
-
-    images.forEach(image => {
-        image.addEventListener('click', function () {
-            const bgUrl = this.dataset.bgUrl;
-            fadeBackground(bgUrl, true);
-            changeContainerBackgroundColor(bgUrl);
-            localStorage.setItem('chosenBackground', bgUrl); // Save chosen background to localStorage
-        });
     });
 
     const calculateDmg = (maxHP, baseDmg, missingHpPerc) => {

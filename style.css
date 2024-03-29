@@ -31,7 +31,7 @@ body {
 h3 {
     margin-block: 5px;
     span {
-        color: #353535;
+        color: #d8d8d8;
     }
 }
 
@@ -51,7 +51,7 @@ h3 {
 }
 
 #background-change i,
-#info {
+#info, #discord, #reddit {
     background: #00000051;
     font-size: 1.5em;
     padding: 0.5em;
@@ -264,18 +264,41 @@ p {
     margin-block: 1em 4em;
 }
 
+.flex {
+    display: flex;
+    gap: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+#info, #discord, #reddit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 2em;
+    height: 2em;
+}
 
 #info {
-    display: grid;
-    place-items: center;
+    --bg: #026d0b;
+    background-color: color-mix(in srgb, var(--bg), #00000051 30%);
 }
 
-.i {
-    font-size: 1.25em;
-    font-style: italic;
-    color: #dcddde;
+#discord {
+    --bg: #5865f2;
+    background-color: color-mix(in srgb, var(--bg), #00000051 30%);
 }
 
+#reddit {
+    --bg: #FF5700;
+    background-color: color-mix(in srgb, var(--bg), #00000051 30%);
+}
+
+#discord:hover, #reddit:hover, #info:hover{
+    background-color: var(--bg);
+}
 
 
 @media screen and (min-width: 875px) {
@@ -307,4 +330,9 @@ span.close {
     height: 0.5em;
     display: flex;
     align-items: flex-end;
+}
+
+.i {
+    font-size: 1.25em;
+    color: #dcddde;
 }

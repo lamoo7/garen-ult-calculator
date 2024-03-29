@@ -159,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const collectorSelected = document.querySelector('input[value="0"]').checked;
 
         let totalDamage = calculateDmg(maxHP, baseDamage, missingHealthPercent);
-        let CollectorDamage = totalDamage + (maxHP * 0.05) - 1;
 
         modifiers.forEach(modifier => {
             if (modifier.checked) {
@@ -167,6 +166,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 totalDamage *= (100 + modifierValue) / 100;
             }
         });
+
+        let CollectorDamage = totalDamage + (maxHP * 0.05) - 1;
 
         if (collectorSelected) {
             result.textContent = CollectorDamage.toFixed(0) + " HP";

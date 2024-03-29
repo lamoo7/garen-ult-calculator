@@ -1,11 +1,30 @@
 document.addEventListener('DOMContentLoaded', function () {
     const progressElement = document.querySelector('progress');
+
     const ranks = document.querySelectorAll('.rank input');
     const slider = document.querySelector('input[type="range"]');
     const numberInput = document.querySelector('input[type="number"]');
     const modifiers = document.querySelectorAll('input[type="checkbox"]');
+
     const button = document.querySelector('button');
+
     const result = document.querySelector('p span');
+
+    var dialog = document.getElementById("modal");
+    var btn = document.getElementById("info");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function () {
+        dialog.showModal();
+    }
+    span.onclick = function () {
+        dialog.close();
+    }
+    dialog.addEventListener('click', function (event) {
+        if (event.target === dialog) {
+            dialog.close();
+        }
+    });
 
     const backgroundChangeDiv = document.getElementById('background-change');
     const images = backgroundChangeDiv.querySelectorAll('img');
@@ -51,9 +70,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = document.getElementById('container');
         const specialBackgrounds = ['Garen_Steel-LegionSkin.jpg', 'Garen_God-KingSkin.jpg', 'Garen_Demacia-ViceSkin.jpg', 'Garen_Mecha-KingdomsSkin.jpg'];
         if (specialBackgrounds.includes(bgUrl.split('/').pop())) {
-            container.style.backgroundColor = '#7da8ada0';
+            container.style.backgroundColor = '#7da8ad6d';
+            dialog.style.backgroundColor = '#7da8ad';
         } else {
             container.style.backgroundColor = '';
+            dialog.style.backgroundColor = '';
         }
     };
 
@@ -70,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
         fadeBackground(defaultBackground);
         changeContainerBackgroundColor(defaultBackground);
     }
-    
+
     images.forEach(image => {
         image.addEventListener('click', function () {
             const bgUrl = this.dataset.bgUrl;
@@ -94,17 +115,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    const select = document.getElementById('critChance');
-    
-    navori.addEventListener("change", () => {
-      if (navori.checked) {
-        select.disabled = false;
-      } else {
-        select.disabled = true;
-      }
+    slider.addEventListener('input', function () {
+        numberInput.value = this.value;
     });
 
-    select.addEventListener('change', function() {
+    numberInput.addEventListener('input', function () {
+        slider.value = this.value;
+    });
+
+
+    const select = document.getElementById('critChance');
+
+    navori.addEventListener("change", () => {
+        if (navori.checked) {
+            select.disabled = false;
+        } else {
+            select.disabled = true;
+        }
+    });
+
+    select.addEventListener('change', function () {
         navori.value = this.value;
     });
 
@@ -126,7 +156,10 @@ document.addEventListener('DOMContentLoaded', function () {
             missingHealthPercent = 35;
         }
 
+        const collectorSelected = document.querySelector('input[value="0"]').checked;
+
         let totalDamage = calculateDmg(maxHP, baseDamage, missingHealthPercent);
+        let CollectorDamage = totalDamage + (maxHP * 0.05) - 1;
 
         modifiers.forEach(modifier => {
             if (modifier.checked) {
@@ -135,23 +168,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        result.textContent = totalDamage.toFixed(0) + " HP";
-
-        // Update progress element attributes
-        progressElement.value = totalDamage;
-        progressElement.max = maxHP;
-    });
-
-    slider.addEventListener('input', function () {
-        numberInput.value = this.value;
-    });
-
-    numberInput.addEventListener('input', function () {
-        slider.value = this.value;
+        if (collectorSelected) {
+            result.textContent = CollectorDamage.toFixed(0) + " HP";
+            progressElement.value = CollectorDamage;
+            progressElement.max = maxHP;
+        } else {
+            result.textContent = totalDamage.toFixed(0) + " HP";
+            progressElement.value = totalDamage;
+            progressElement.max = maxHP;
+        }
     });
 
     const calculateDmg = (maxHP, baseDmg, missingHpPerc) => {
         const threshold = Math.floor((100 * baseDmg + missingHpPerc * maxHP) / (100 + missingHpPerc));
         return Math.min(threshold, maxHP);
     }
+
 });

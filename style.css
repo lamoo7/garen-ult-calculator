@@ -3,7 +3,10 @@
 * {
     box-sizing: border-box;
     transition: all 125ms ease;
+    outline: none;
 }
+
+
 
 body {
     min-block-size: 100vh;
@@ -11,7 +14,7 @@ body {
     scroll-behavior: smooth;
     font-family: Manrope;
 
-    background-color: #00000051;
+    background-color: #000000a4;
     background-blend-mode: multiply;
     background-position: center;
     background-attachment: fixed;
@@ -23,56 +26,112 @@ body {
     transition: all 250ms ease-in-out;
 }
 
-#container {
-    background-color: #a89777a0;
-    padding: 3em;
-    border-radius: 10px;
-    display: grid;
-    place-items: center;
-    max-width: calc(900px + 6em);
-}
 
-#ranks-display {
-    display: flex;
-    justify-content: space-around;
-    text-align: center;
 
+h3 {
+    margin-block: 5px;
     span {
-        margin-inline: 2em;
+        color: #353535;
     }
 }
 
-header {
+
+
+.center {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+}
+
+
+
+#background-change {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#background-change i,
+#info {
+    background: #00000051;
+    font-size: 1.5em;
+    padding: 0.5em;
+    color: #dcddde;
+    cursor: pointer;
+    aspect-ratio: 1;
+    height: 2em;
+}
+
+#background-change i:focus+#pics,
+#pics:hover {
+    display: flex;
+}
+
+#pics {
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#pics img {
+    background-color: #28378d;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0.15em;
+}
+
+
+
+#container {
+    background-color: #a897776d;
+    padding: 3em;
+    border-radius: 10px;
+    max-width: calc(900px + 6em);
+}
+
+
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none;
+}
+
+label:has(input:not(:checked)) img {
+    filter: grayscale(.7);
+}
+
+
+
+#ults {
+    display: grid;
+    grid-template-columns: 5em 5em 5em;
 
     label {
         position: relative;
         cursor: pointer;
     }
 
+    label:has(input[type="radio"]:checked) img {
+        border: 8px #28378d solid;
+    }
+
+    span {
+        text-align: center;
+    }
+
     img {
-        height: 5em;
+        height: 4em;
         aspect-ratio: 1;
-        margin: 1em;
+        margin: 0 0.5em;
 
         border: 4px #313862 solid;
         border-radius: 4px
     }
 }
 
-input[type="radio"], input[type="checkbox"] {
-    display: none;
-}
-
-label:has(input[type="radio"]:checked) img {
-    border: 8px #107AB0 solid;
-}
-
 .fa-solid.fa-check {
     position: absolute;
-    top: calc(1.1em + 8px);
-    right: calc(1.1em + 8px);
+    top: calc(0em + 8px);
+    right: calc(0.5em + 8px);
     color: #dcddde;
     z-index: 99;
     background-color: #313862aa;
@@ -82,13 +141,62 @@ label:has(input[type="radio"]:checked) img {
     display: none;
 }
 
-p {
-    font-size: 1.75em;
 
-    span {
-        color: #9b0f0f;
+
+.items {
+    display: flex;
+    align-items: center;
+
+    img {
+        width: 4em;
+        height: 4em;
+        border-radius: 100%;
+        border: 2px #313862 solid;
+        cursor: pointer;
+        margin: 20px 0 0 0;
     }
 }
+
+label:has(input[type="checkbox"]:checked) img {
+    border: 6px #28378d solid !important;
+}
+
+select {
+    margin-top: 15px;
+
+    -webkit-appearance: none;
+    appearance: none;
+
+    text-indent: 0.01px;
+    text-overflow: "";
+
+    border: none;
+    padding: 7px 27px 7px 10px;
+    background: #ddd url(http://new.mitoo.co/assets/to_be_sorted/arrow_down.png) no-repeat 90% 50%;
+}
+
+
+
+.hp-inputs {
+    display: flex;
+    gap: 20px;
+}
+
+input[type="range"] {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+input[type="number"] {
+    width: 11ch;
+    color: #026d0b;
+    font-weight: bolder;
+    font-size: 1.5em;
+    padding-block: 0.25em;
+}
+
+
 
 button {
     background: linear-gradient(-45deg, #107AB0, #313862);
@@ -101,6 +209,7 @@ button {
     font-size: 28px;
     cursor: pointer;
     text-decoration: none;
+    margin-block: 0.75em;
 }
 
 button:hover {
@@ -121,92 +230,26 @@ button:active {
     }
 }
 
-.i {
-    justify-self: self-start;
-    font-size: 0.75em;
-    font-style: italic;
-}
 
-#input-modifiers {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
 
-    img {
-        width: 4em;
-        height: 4em;
-        margin: 1em;
-        border-radius: 100%;
-        border: 2px #313862 solid;
-        cursor: pointer;
+p {
+    font-size: 1.75em;
+    margin: 0;
+    text-align: center;
+
+    span {
+        color: red;
     }
 }
 
-input {
-    outline-color: #313862;
-    margin: 1em;
-    color: #026d0b;
-    font-weight: bolder;
-    font-size: 1.5em;
-    padding-block: 0.5em;
-}
 
-input[type="range"] {
-    width: 100%;
-}
-
-input[type="number"] {
-    width: 11ch;
-}
-
-label:has(input[type="checkbox"]:checked) img {
-    border: 6px #107AB0 solid !important;
-}
-
-#background-change {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#background-change i {
-    background: #00000051;
-    font-size: 1.5em;
-    padding: 0.5em;
-    color: #dcddde;
-    cursor: pointer;
-}
-
-#background-change i:focus + #pics,
-#pics:hover {
-    display: flex;
-}
-
-#pics {
-    display: none;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-#pics img {
-    background-color: #313862;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0.15em;
-}
-
-
-label:has(input:not(:checked)) img {
-    filter: grayscale(.7);
-}
 
 .hp-bar {
     width: 200px;
     height: 30px;
     border: 1px solid #4d4a46;
     overflow: hidden;
-    margin-bottom: 1.5em;
+    margin-top: 1em;
 }
 
 .hp-bar::-webkit-progress-value {
@@ -217,15 +260,51 @@ label:has(input:not(:checked)) img {
     background-color: #0d0d0b;
 }
 
-select {
-    -webkit-appearance: none;
-    appearance: none;
-
-    text-indent: 0.01px;
-    text-overflow: "";
-    
-    border: none;
-    padding: 7px 27px 7px 10px;
-    background: #ddd url(http://new.mitoo.co/assets/to_be_sorted/arrow_down.png) no-repeat 90% 50%; 
+#last {
+    margin-block: 1em 4em;
 }
-  
+
+
+#info {
+    display: grid;
+    place-items: center;
+}
+
+.i {
+    font-size: 1.25em;
+    font-style: italic;
+    color: #dcddde;
+}
+
+
+
+@media screen and (min-width: 875px) {
+    #big-screen-flex {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+    }
+}
+
+
+
+dialog {
+    background-color: #a89777;
+    position: relative;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+span.close {
+    position: absolute;
+    top: 0.40em;
+    right: 0;
+    color: #9b0f0f;
+    font-size: 5em;
+    cursor: pointer;
+    height: 0.5em;
+    display: flex;
+    align-items: flex-end;
+}

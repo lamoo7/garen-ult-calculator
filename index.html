@@ -22,7 +22,8 @@
                 data-bg-url="img/Garen_Warring-KingdomsSkin.jpg">
             <img src="img/Garen_God-KingCircle.webp" alt="god king" data-bg-url="img/Garen_God-KingSkin.jpg">
             <img src="img/Garen_DemaciaViceCircle.webp" alt="demacia vice" data-bg-url="img/Garen_Demacia-ViceSkin.jpg">
-            <img src="img/Garen_MechaKingdomsCircle.webp" alt="mecha kingdoms" data-bg-url="img/Garen_Mecha-KingdomsSkin.jpg">
+            <img src="img/Garen_MechaKingdomsCircle.webp" alt="mecha kingdoms"
+                data-bg-url="img/Garen_Mecha-KingdomsSkin.jpg">
             <img src="img/Garen_PrestigeMechaKingdomsCircle.webp" alt="mecha kingdoms prestige"
                 data-bg-url="img/Garen_Mecha-Kingdoms-PrestigeSkin.jpg">
             <img src="img/Garen_BattleAcademiaCircle.webp" alt="battle academia"
@@ -31,71 +32,132 @@
         </div>
     </div>
 
-    <div id="container">
+    <main id="container">
 
-        <div id="ranks-display">
-            <span>Rank 1</span>
-            <span>Rank 2</span>
-            <span>Rank 3</span>
+
+        <div id="big-screen-flex">
+
+
+            <section>
+                <h3><span>Step 1.</span> Select Ultimate Level ( 1 / 2 /3 )</h3>
+
+                <div id="ults">
+                    <span>•</span>
+                    <span>••</span>
+                    <span>•••</span>
+
+                    <label class="rank">
+                        <input type="radio" name="rank" value="1">
+                        <img src="Demacian_Justice.webp" alt="ult-rank-1">
+                        <i class="fa-solid fa-check"></i>
+                    </label>
+                    <label class="rank">
+                        <input type="radio" name="rank" value="2">
+                        <img src="Demacian_Justice.webp" alt="ult-rank-2">
+                        <i class="fa-solid fa-check"></i>
+                    </label>
+                    <label class="rank">
+                        <input type="radio" name="rank" value="3">
+                        <img src="Demacian_Justice.webp" alt="ult-rank-3">
+                        <i class="fa-solid fa-check"></i>
+                    </label>
+                </div>
+            </section>
+
+
+            <section>
+                <h3>Step 2. Select any items that you own. </h3>
+
+                <div class="hp-inputs items">
+                    <label>
+                        <input type="checkbox" name="modifier" value="5">
+                        <img src="The_Collector_item.webp" alt="the collector">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="modifier" value="12">
+                        <img src="Spear_of_Shojin_item_HD.webp" alt="spear of shojin">
+                    </label>
+                    <label>
+                        <input type="checkbox" name="modifier" value="4" id="navori">
+                        <img src="Navori_Quickblades_item_HD.webp" alt="navori quickblades">
+                    </label>
+                    <select id="critChance" disabled>
+                        <option value="4">20% Crit Chance</option>
+                        <option value="8">40% Crit Chance</option>
+                        <option value="12">60% Crit Chance</option>
+                        <option value="16">80% Crit Chance</option>
+                        <option value="20">100% Crit Chance</option>
+                    </select>
+                </div>
+            </section>
+
+
         </div>
-        <header>
-            <label class="rank">
-                <input type="radio" name="rank" value="1">
-                <img src="Demacian_Justice.webp" alt="ult-rank-1">
-                <i class="fa-solid fa-check"></i>
-            </label>
-            <label class="rank">
-                <input type="radio" name="rank" value="2">
-                <img src="Demacian_Justice.webp" alt="ult-rank-2">
-                <i class="fa-solid fa-check"></i>
-            </label>
-            <label class="rank">
-                <input type="radio" name="rank" value="3">
-                <img src="Demacian_Justice.webp" alt="ult-rank-3">
-                <i class="fa-solid fa-check"></i>
-            </label>
-        </header>
 
-        <div id="input-modifiers">
-            <input type="range" id="hp-slider" min="500" max="10000" value="500">
-            <input type="number" id="hp-input" placeholder="enemy HP">
-            
-            <label>
-                <input type="checkbox" name="modifier" value="12">
-                <img src="Spear_of_Shojin_item_HD.webp" alt="spear of shojin">
-            </label>
-            <label>
-                <input type="checkbox" name="modifier" value="0" id="navori">
-                <img src="Navori_Quickblades_item_HD.webp" alt="navori quickblades">
-            </label>
-            <select id="critChance" disabled>
-                <option value="4">20% Crit Chance</option>
-                <option value="8">40% Crit Chance</option>
-                <option value="12">60% Crit Chance</option>
-                <option value="16">80% Crit Chance</option>
-                <option value="20">100% Crit Chance</option>
-            </select>
+
+        <section>
+            <h3>Step 3. Select the enemy Max HP</h3>
+
+            <div class="hp-inputs">
+                <input type="range" id="hp-slider" min="500" max="10000" value="500">
+                <input type="number" id="hp-input" placeholder="enemy HP">
+            </div>
+        </section>
+
+
+        <div class="center">
+            <button>Demacia!</button>
         </div>
 
-        <button>Demacia!</button>
 
-        <p>The enemy needs to be at <span>0 HP</span> in order for justice to be served.</p>
-        
+        <section id="last">
+            <p>The enemy needs to be at <span>0 HP</span> in order for justice to be served.</p>
 
-        <progress class="hp-bar" value="100" max="100"></progress>
+            <div class="center">
+                <progress class="hp-bar" value="100" max="100"></progress>
+            </div>
+        </section>
+
+        <i class="fa-solid fa-lightbulb" id="info" tabindex="0"></i>
+
+    </main>
 
 
-        <p class="i">* Garen's ultimate deals 150 / 300 / 450 (+ 25 / 30 / 35% of target's missing health) true damage.</p>
+
+    <dialog id="modal">
+
+        <span class="close">&times;</span>
+
+
+        <p class="i">* Garen's ultimate deals 150 / 300 / 450 (+ 25 / 30 / 35% of target's missing health) true damage.
+        </p>
+
+        <br>
 
         <p class="i">* Spear of Shojin and Navori Quickblades amplifies all damage types, including true damage.</p>
 
+        <br>
+
         <p class="i">* Navori Quickblades increases your damage dealt by abilities by 0% − 20% (based on critical strike
-            chance, 4% for every 20%).</p>
+            chance, 4% for every 20%).
+        </p>
 
-        <p class="i">* When selected, Spear of Shojin damage amplifier is calculated at full stacks (4 stacks). For each stack, your ability
-            damage gain 3% increased damage, for a total increase of 12% at maximum stacks.</p>
+        <br>
 
-    </div>
+        <p class="i">* The Collector: If you deal damage that would leave a champion below 5% of their maximum health,
+            execute them.</p>
+
+        <br>
+
+        <p class="i">* When selected, Spear of Shojin damage amplifier is calculated at full stacks (4 stacks). For each
+            stack, your ability
+            damage gain 3% increased damage, for a total increase of 12% at maximum stacks. The first ability hit will
+            benefit from one stack, the second from two, and so on.
+        </p>
+
+    </dialog>
+
+
 
     <script src="script.js"></script>
 

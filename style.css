@@ -82,7 +82,7 @@ h3 {
 
 
 #container {
-    background-color: #a897776d;
+    background-color: #a897779d;
     padding: 3em;
     border-radius: 10px;
     max-width: calc(900px + 6em);
@@ -238,7 +238,7 @@ p {
     text-align: center;
 
     span {
-        color: red;
+        color: #9d0000;
     }
 }
 

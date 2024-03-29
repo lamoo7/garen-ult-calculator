@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const container = document.getElementById('container');
         const specialBackgrounds = ['Garen_Steel-LegionSkin.jpg', 'Garen_God-KingSkin.jpg', 'Garen_Demacia-ViceSkin.jpg', 'Garen_Mecha-KingdomsSkin.jpg'];
         if (specialBackgrounds.includes(bgUrl.split('/').pop())) {
-            container.style.backgroundColor = '#7da8ad6d';
+            container.style.backgroundColor = '#7da8ad9d';
             dialog.style.backgroundColor = '#7da8ad';
         } else {
             container.style.backgroundColor = '';

@@ -19,6 +19,7 @@ body {
     scroll-behavior: smooth;
     font-family: Manrope;
 
+    background-image: url("img/Garen.jpg");
     background-color: #000000a4;
     background-blend-mode: multiply;
     background-position: center;

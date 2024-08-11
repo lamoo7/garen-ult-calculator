@@ -94,9 +94,9 @@ h3 {
     max-width: calc(900px + 6em);
 }
 
-@media screen and (min-width: calc(900px + 6em)) {
+@media screen and (max-width: 1000px) {
     #container {
-        width: 1000px;
+        width: 100vw !important;
     }
 }
 

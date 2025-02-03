@@ -225,10 +225,24 @@ section {
 }
 
 #pics {
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
+    display: none;
 }
 
 #pics img {
     cursor: pointer;
+}
+
+i:focus + #pics,
+i:focus-within + #pics,
+#pics:hover {
+    display: flex;
+}
+
+i {
+    font-size: 2em;
+    padding: 0.25em;
+    color: rgba(245, 245, 245, 0.53);
+    background-color: #0000009d;
 }

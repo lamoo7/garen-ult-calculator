@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <title>Garen Ult Range Calculator</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/c48f0d09a5.js" crossorigin="anonymous"></script>
-    <link rel="shortcut icon" href="Demacian_Justice.webp" type="image/x-icon">
+    <link rel="shortcut icon" href="img/ult.webp" type="image/x-icon">
 </head>
 
 <body>
@@ -16,173 +16,163 @@
         <i class="fa-solid fa-pencil" tabindex="0"></i>
 
         <div id="pics">
-            <img src="img/Garen_OriginalCircle.webp" alt="default" data-bg-url="img/Garen.jpg">
-            <img src="img/Garen_SteelLegionCircle.webp" alt="steel legion" data-bg-url="img/Garen_Steel-LegionSkin.jpg">
-            <img src="img/Garen_WarringKingdomsCircle.webp" alt="warring kingdoms"
-                data-bg-url="img/Garen_Warring-KingdomsSkin.jpg">
-            <img src="img/Garen_God-KingCircle.webp" alt="god king" data-bg-url="img/Garen_God-KingSkin.jpg">
-            <img src="img/Garen_DemaciaViceCircle.webp" alt="demacia vice" data-bg-url="img/Garen_Demacia-ViceSkin.jpg">
-            <img src="img/Garen_MechaKingdomsCircle.webp" alt="mecha kingdoms"
-                data-bg-url="img/Garen_Mecha-KingdomsSkin.jpg">
-            <img src="img/Garen_PrestigeMechaKingdomsCircle.webp" alt="mecha kingdoms prestige"
-                data-bg-url="img/Garen_Mecha-Kingdoms-PrestigeSkin.jpg">
-            <img src="img/Garen_BattleAcademiaCircle.webp" alt="battle academia"
-                data-bg-url="img/Garen_Battle-AcademiaSkin.jpg">
-            <img src="img/Garen_MythmakerCircle.webp" alt="mythmaker" data-bg-url="img/Garen_MythmakerSkin.jpg">
-            <img src="img/48px-Garen_FallenGod-KingCircle.webp" alt="fallen god king" data-bg-url="img/Garen_FallenGod-KingSkin.jpg">
+            <img src="background/Garen_OriginalCircle.webp" alt="default" data-bg-url="background/Garen.jpg">
+            <img src="background/Garen_SteelLegionCircle.webp" alt="steel legion"
+                data-bg-url="background/Garen_Steel-LegionSkin.jpg">
+            <img src="background/Garen_WarringKingdomsCircle.webp" alt="warring kingdoms"
+                data-bg-url="background/Garen_Warring-KingdomsSkin.jpg">
+            <img src="background/Garen_God-KingCircle.webp" alt="god king"
+                data-bg-url="background/Garen_God-KingSkin.jpg">
+            <img src="background/Garen_DemaciaViceCircle.webp" alt="demacia vice"
+                data-bg-url="background/Garen_Demacia-ViceSkin.jpg">
+            <img src="background/Garen_MechaKingdomsCircle.webp" alt="mecha kingdoms"
+                data-bg-url="background/Garen_Mecha-KingdomsSkin.jpg">
+            <img src="background/Garen_PrestigeMechaKingdomsCircle.webp" alt="mecha kingdoms prestige"
+                data-bg-url="background/Garen_Mecha-Kingdoms-PrestigeSkin.jpg">
+            <img src="background/Garen_BattleAcademiaCircle.webp" alt="battle academia"
+                data-bg-url="background/Garen_Battle-AcademiaSkin.jpg">
+            <img src="background/Garen_MythmakerCircle.webp" alt="mythmaker"
+                data-bg-url="background/Garen_MythmakerSkin.jpg">
+            <img src="background/48px-Garen_FallenGod-KingCircle.webp" alt="fallen god king"
+                data-bg-url="background/Garen_FallenGod-KingSkin.jpg">
         </div>
     </div>
 
-    <main id="container">
 
-
-        <div id="big-screen-flex">
-
-
-            <section>
-                <h3><span>Step 1.</span> Select Ultimate Level ( 1 / 2 / 3 )</h3>
-
-                <div id="ults">
-                    <span>•</span>
-                    <span>••</span>
-                    <span>•••</span>
-
-                    <label class="rank">
-                        <input type="radio" name="rank" value="1">
-                        <img src="Demacian_Justice.webp" alt="ult-rank-1">
-                        <i class="fa-solid fa-check"></i>
-                    </label>
-                    <label class="rank">
-                        <input type="radio" name="rank" value="2">
-                        <img src="Demacian_Justice.webp" alt="ult-rank-2">
-                        <i class="fa-solid fa-check"></i>
-                    </label>
-                    <label class="rank">
-                        <input type="radio" name="rank" value="3">
-                        <img src="Demacian_Justice.webp" alt="ult-rank-3">
-                        <i class="fa-solid fa-check"></i>
-                    </label>
-                </div>
-            </section>
-
-
-            <section>
-                <h3><span>Step 2.</span> Select any items or runes that you own. </h3>
-
-                <div class="hp-inputs items center">
-                    <label>
-                        <input type="checkbox" name="modifier" value="0">
-                        <img src="The_Collector_item.webp" alt="the collector">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="modifier" value="12">
-                        <img src="Spear_of_Shojin_item_HD.webp" alt="spear of shojin">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="modifier" value="14">
-                        <img src="Axiom_Arcanist_rune.webp" alt="axiom arcanist">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="modifier" value="8">
-                        <img src="64px-Press_the_Attack_rune.webp" alt="press the attack">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="modifier" value="8">
-                        <img src="Coup_de_Grace_rune.webp" alt="couple of grace">
-                    </label>
-                    <label>
-                        <input type="checkbox" name="modifier" value="11">
-                        <img src="Last_Stand_rune.webp" alt="last stand">
-                    </label>
-                    <!-- Navori Quickblades got removed from the game in patch 14.10 -->
-                    <!-- <label>
-                        <input type="checkbox" name="modifier" value="4" id="navori">
-                        <img src="Navori_Quickblades_item_HD.webp" alt="navori quickblades">
-                    </label>
-                    <select id="critChance" disabled>
-                        <option value="4">20% Crit Chance</option>
-                        <option value="8">40% Crit Chance</option>
-                        <option value="12">60% Crit Chance</option>
-                        <option value="16">80% Crit Chance</option>
-                        <option value="20">100% Crit Chance</option>
-                    </select> -->
-                </div>
-            </section>
-
-
-        </div>
-
-
+    <main>
         <section>
-            <h3><span>Step 3.</span> Select the enemy Max HP</h3>
+            <div>
+                <h3><span class="step">Step 1.</span> Select Ultimate Rank ( 1 / 2 / 3 )</h3>
 
-            <div class="hp-inputs">
-                <input type="range" id="hp-slider" min="500" max="10000" value="500">
-                <input type="number" id="hp-input" placeholder="enemy HP">
+                <div class="flex">
+                    <input type="radio" id="rank1" name="ultRank" value="1" checked>
+                    <label for="rank1" class="ult">• <img src="img/ult.webp" alt="ult"></label>
+
+                    <input type="radio" id="rank2" name="ultRank" value="2">
+                    <label for="rank2" class="ult">•• <img src="img/ult.webp" alt="ult"></label>
+
+                    <input type="radio" id="rank3" name="ultRank" value="3">
+                    <label for="rank3" class="ult">••• <img src="img/ult.webp" alt="ult"></label>
+                </div>
+            </div>
+
+            <div>
+                <h3><span class="step">Step 2.</span> Select Items and Runes</h3>
+
+                <div class="flex">
+                    <input type="checkbox" id="collector" class="collector">
+                    <label for="collector" class="increases"><img src="img/collector.webp" alt="collector"></label>
+
+                    <input type="checkbox" id="spear_of_shojin" class="bonus" data-bonus="12">
+                    <label for="spear_of_shojin" class="increases"><img src="img/spear.webp"
+                            alt="spear_of_shojin"></label>
+
+                    <input type="checkbox" id="axiom_arcanist" class="bonus" data-bonus="14">
+                    <label for="axiom_arcanist" class="increases"><img src="img/axiom.webp"
+                            alt="axiom_arcanist"></label>
+
+                    <input type="checkbox" id="press_the_attack" class="bonus" data-bonus="8">
+                    <label for="press_the_attack" class="increases"><img src="img/pta.webp"
+                            alt="press_the_attack"></label>
+
+                    <input type="checkbox" id="last_stand" class="bonus" data-bonus="11">
+                    <label for="last_stand" class="increases"><img src="img/last.webp" alt="last_stand"></label>
+                </div>
             </div>
         </section>
 
+        <h3><span class="step">Step 3.</span> Select the enemy Max HP</h3>
+        <div class="center">
+            <input type="number" id="health" placeholder="enemy HP" min="500" max="10000">
+
+            <button onclick="calculate()">Justice!</button>
+        </div>
+
+        <h1>The enemy needs to be at <span id="result">0 HP</span> in order to be executed</h1>
 
         <div class="center">
-            <button>Demacia!</button>
+            <progress class="hp-bar" value="1" max="1"></progress>
         </div>
-
-
-        <section id="last">
-            <p>The enemy needs to be at <span>0 HP</span> in order for justice to be served.</p>
-
-            <div class="center">
-                <progress class="hp-bar" value="100" max="100"></progress>
-            </div>
-        </section>
-
-        <div class="flex">
-            <i class="fa-solid fa-lightbulb" id="info" tabindex="0"></i>
-            <a href="https://www.reddit.com/r/GarenMains/" target="_blank"><i class="fa-brands fa-reddit" id="reddit"></i></a>
-            <a href="https://discord.com/invite/garen-mains-252827696441065473" target="_blank"><i class="fa-brands fa-discord" id="discord"></i></a>
-        </div>
-
     </main>
 
+    <script>
+        // Add this before other scripts
+        function preloadImages() {
+            const images = document.querySelectorAll('#pics img');
+            const imageUrls = Array.from(images).map(img => img.getAttribute('data-bg-url'));
+            
+            imageUrls.forEach(url => {
+                const img = new Image();
+                img.src = url;
+            });
+        }
 
+        // Load saved background on page load
+        window.addEventListener('load', () => {
+            preloadImages();
+            const savedBg = localStorage.getItem('selectedBackground') || 'background/Garen.jpg';
+            document.body.style.backgroundImage = `url('${savedBg}')`;
+        });
 
-    <dialog id="modal">
+        document.querySelectorAll('#pics img').forEach(img => {
+            img.addEventListener('click', () => {
+                const bgUrl = img.getAttribute('data-bg-url');
+                document.body.style.backgroundImage = `url('${bgUrl}')`;
+                localStorage.setItem('selectedBackground', bgUrl);
+            });
+        });
 
-        <span class="close">&times;</span>
+        
+        function calculate() {
+            const enemyHealth = parseInt(document.getElementById('health').value);
+            const selectedRank = document.querySelector('input[name="ultRank"]:checked').value;
 
+            let base, multiplier;
+            switch (selectedRank) {
+                case "1":
+                    base = 150;
+                    multiplier = 0.25;
+                    break;
+                case "2":
+                    base = 300;
+                    multiplier = 0.30;
+                    break;
+                case "3":
+                    base = 450;
+                    multiplier = 0.35;
+                    break;
+            }
 
-        <p class="i">* Garen's ultimate deals 150 / 300 / 450 (+ 25 / 30 / 35% of target's missing health) true damage.
-        </p>
+            // First get total bonus multiplier
+            let totalBonus = 1;
+            const checkedBonuses = document.querySelectorAll('.bonus:checked');
+            checkedBonuses.forEach(bonus => {
+                const bonusValue = parseFloat(bonus.dataset.bonus) / 100;
+                totalBonus *= (1 + bonusValue);
+            });
 
-        <!-- <br>
+            // Calculate x with bonus considered
+            const x = (enemyHealth - base) / (1 + multiplier);
 
-        <p class="i">* Navori Quickblades increases your damage dealt by abilities by 0% − 20% (based on critical strike
-            chance, 4% for every 20%).
-        </p> -->
+            // Calculate y with base damage
+            let y = base + multiplier * x;
 
-        <br>
+            // Apply damage bonuses
+            y *= totalBonus;
 
-        <p class="i">* The Collector: If you deal damage that would leave a champion below 5% of their maximum health,
-            execute them.</p>
+            // Add collector damage if checked
+            if (document.getElementById('collector').checked) {
+                y += (enemyHealth * 0.05);
+            }
 
-        <br>
+            document.getElementById('result').textContent = Math.floor(y) + " HP";
 
-        <p class="i">* When selected, Spear of Shojin damage amplifier is calculated at full stacks (4 stacks). For each
-            stack, your ability damage gains 3% increased damage, for a total increase of 12% at maximum stacks. 
-            The first ability hit will
-            benefit from one stack, the second from two, and so on.
-        </p>
-
-        <br>
-
-        <p class="i">Axiom Arcanist increases Ultimate damage by 14%</p>
-
-    </dialog>
-
-
-
-    <script src="script.js"></script>
-
+            // After damage calculation
+            const progressBar = document.querySelector('.hp-bar');
+            progressBar.max = enemyHealth;
+            progressBar.value = Math.floor(y);
+        }
+    </script>
 </body>
 
 </html>

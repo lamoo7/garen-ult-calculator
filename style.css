@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600&display=swap');
 
 :root {
-    --color: #a89777;
-    --alpha-color: #a897779d;
-    --accent: #654a15;
+    --color: 0, 0, 0;
+    --accent: 0, 0, 0;
     font-size: 16px;
 }
 
@@ -21,7 +20,6 @@ body {
     font-family: Manrope;
     padding: 1rem;
 
-    /* background-image: url("background/Garen.jpg"); */
     background-color: #000000a4;
     background-blend-mode: multiply;
     background-position: center;
@@ -43,10 +41,13 @@ main {
     width: 90%;
     max-width: 1000px;
 
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    background: rgba(var(--color), 0.25);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+}
+
+.outline, h1 {
+    color: color-mix(in srgb, white 50%, var(--accent) 50%)
 }
 
 #result {
@@ -116,8 +117,7 @@ input[type="number"] {
 }
 
 button {
-    /* background: linear-gradient(-45deg, #107AB0, #313862); */
-    background: linear-gradient(-45deg, var(--color), var(--accent));
+    background: var(--accent);
     padding: 10px 20px;
     border: none;
     border-radius: 21px;

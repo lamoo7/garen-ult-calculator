@@ -16,25 +16,46 @@
         <i class="fa-solid fa-pencil" tabindex="0"></i>
 
         <div id="pics">
-            <img src="background/Garen_OriginalCircle.webp" alt="default" data-bg-url="background/Garen.jpg">
+            <img src="background/Garen_OriginalCircle.webp" alt="default" 
+                data-bg-url="background/Garen.jpg"
+                data-color="242, 229, 189"
+                data-accent="55, 82, 166">
             <img src="background/Garen_SteelLegionCircle.webp" alt="steel legion"
-                data-bg-url="background/Garen_Steel-LegionSkin.jpg">
+                data-bg-url="background/Garen_Steel-LegionSkin.jpg"
+                data-color="128, 210, 242"
+                data-accent="57, 82, 115">
             <img src="background/Garen_WarringKingdomsCircle.webp" alt="warring kingdoms"
-                data-bg-url="background/Garen_Warring-KingdomsSkin.jpg">
+                data-bg-url="background/Garen_Warring-KingdomsSkin.jpg"
+                data-color="191, 138, 107"
+                data-accent="58, 140, 78">
             <img src="background/Garen_God-KingCircle.webp" alt="god king"
-                data-bg-url="background/Garen_God-KingSkin.jpg">
+                data-bg-url="background/Garen_God-KingSkin.jpg"
+                data-color="76, 82, 115"
+                data-accent="78, 95, 191">
             <img src="background/Garen_DemaciaViceCircle.webp" alt="demacia vice"
-                data-bg-url="background/Garen_Demacia-ViceSkin.jpg">
+                data-bg-url="background/Garen_Demacia-ViceSkin.jpg"
+                data-color="109, 242, 242"
+                data-accent="217, 98, 153">
             <img src="background/Garen_MechaKingdomsCircle.webp" alt="mecha kingdoms"
-                data-bg-url="background/Garen_Mecha-KingdomsSkin.jpg">
+                data-bg-url="background/Garen_Mecha-KingdomsSkin.jpg"
+                data-color="136, 212, 242"
+                data-accent="217, 208, 193">
             <img src="background/Garen_PrestigeMechaKingdomsCircle.webp" alt="mecha kingdoms prestige"
-                data-bg-url="background/Garen_Mecha-Kingdoms-PrestigeSkin.jpg">
+                data-bg-url="background/Garen_Mecha-Kingdoms-PrestigeSkin.jpg"
+                data-color="217, 168, 108"
+                data-accent="242, 220, 153">
             <img src="background/Garen_BattleAcademiaCircle.webp" alt="battle academia"
-                data-bg-url="background/Garen_Battle-AcademiaSkin.jpg">
+                data-bg-url="background/Garen_Battle-AcademiaSkin.jpg"
+                data-color="133, 191, 242"
+                data-accent="242, 15, 34">
             <img src="background/Garen_MythmakerCircle.webp" alt="mythmaker"
-                data-bg-url="background/Garen_MythmakerSkin.jpg">
+                data-bg-url="background/Garen_MythmakerSkin.jpg"
+                data-color="89, 28, 39"
+                data-accent="242, 153, 133">
             <img src="background/48px-Garen_FallenGod-KingCircle.webp" alt="fallen god king"
-                data-bg-url="background/Garen_FallenGod-KingSkin.jpg">
+                data-bg-url="background/Garen_FallenGod-KingSkin.jpg"
+                data-color="166, 130, 217"
+                data-accent="166, 63, 82">
         </div>
     </div>
 
@@ -42,7 +63,7 @@
     <main>
         <section>
             <div>
-                <h3><span class="step">Step 1.</span> Select Ultimate Rank ( 1 / 2 / 3 )</h3>
+                <h3><span class="step">Step 1.</span> <span class="outline">Select Ultimate Rank ( 1 / 2 / 3 )</span></h3>
 
                 <div class="flex">
                     <input type="radio" id="rank1" name="ultRank" value="1" checked>
@@ -57,7 +78,7 @@
             </div>
 
             <div>
-                <h3><span class="step">Step 2.</span> Select Items and Runes</h3>
+                <h3><span class="step">Step 2.</span> <span class="outline">Select Items and Runes</span></h3>
 
                 <div class="flex">
                     <input type="checkbox" id="collector" class="collector">
@@ -81,7 +102,7 @@
             </div>
         </section>
 
-        <h3><span class="step">Step 3.</span> Select the enemy Max HP</h3>
+        <h3><span class="step">Step 3.</span> <span class="outline">Select the enemy Max HP</span></h3>
         <div class="center">
             <input type="number" id="health" placeholder="enemy HP" min="500" max="10000">
 
@@ -111,14 +132,27 @@
         window.addEventListener('load', () => {
             preloadImages();
             const savedBg = localStorage.getItem('selectedBackground') || 'background/Garen.jpg';
+            const savedColor = localStorage.getItem('selectedColor') || '242, 229, 189';
+            const savedAccent = localStorage.getItem('selectedAccent') || '55, 82, 166';
+            
             document.body.style.backgroundImage = `url('${savedBg}')`;
+            document.documentElement.style.setProperty('--color', savedColor);
+            document.documentElement.style.setProperty('--accent', `rgb(${savedAccent})`);
         });
 
         document.querySelectorAll('#pics img').forEach(img => {
             img.addEventListener('click', () => {
                 const bgUrl = img.getAttribute('data-bg-url');
+                const color = img.getAttribute('data-color');
+                const accent = img.getAttribute('data-accent');
+                
                 document.body.style.backgroundImage = `url('${bgUrl}')`;
+                document.documentElement.style.setProperty('--color', color);
+                document.documentElement.style.setProperty('--accent', `rgb(${accent})`);
+                
                 localStorage.setItem('selectedBackground', bgUrl);
+                localStorage.setItem('selectedColor', color);
+                localStorage.setItem('selectedAccent', accent);
             });
         });
 

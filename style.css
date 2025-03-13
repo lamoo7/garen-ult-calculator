@@ -46,7 +46,7 @@ main {
     -webkit-backdrop-filter: blur(4px);
 }
 
-.outline, h1 {
+.outline, h1, label {
     color: color-mix(in srgb, white 50%, var(--accent) 50%)
 }
 
@@ -219,30 +219,17 @@ section {
 
 
 #background-change {
-    position: absolute;
-    top: 0;
-    left: 0;
+    width: 80vw;
+    margin-block: 1rem;
 }
 
 #pics {
-    /* display: flex; */
-    flex-direction: column;
-    display: none;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
 
 #pics img {
     cursor: pointer;
-}
-
-i:focus + #pics,
-i:focus-within + #pics,
-#pics:hover {
-    display: flex;
-}
-
-i {
-    font-size: 2em;
-    padding: 0.25em;
-    color: rgba(245, 245, 245, 0.53);
-    background-color: #0000009d;
 }

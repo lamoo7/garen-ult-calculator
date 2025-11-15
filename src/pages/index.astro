@@ -171,7 +171,6 @@ const backgrounds = {
 				placeholder="enemy HP"
 				min="500"
 				max="10000"
-				value="500"
 			/>
 		</div>
 
@@ -296,7 +295,8 @@ const backgrounds = {
 		backdrop-filter: blur(4px);
 		-webkit-backdrop-filter: blur(4px);
 
-		margin: var(--space-sm);
+		margin-block: var(--space-sm);
+		margin-inline: auto;
 	}
 
 	/* Typography */
@@ -409,8 +409,10 @@ const backgrounds = {
 		padding: var(--space-sm);
 		background-color: var(--transparency);
 		border-radius: var(--space-sm);
-		margin-inline: var(--space-sm);
-		margin-block: 1rem;
+		width: 90%;
+		max-width: var(--max-width);
+		margin-inline: auto;
+		margin-block: var(--space-sm);
 	}
 
 	#circles {

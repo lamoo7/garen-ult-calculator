@@ -258,7 +258,11 @@ const backgrounds = {
 	/* ===== BACKGROUND SYSTEM ===== */
 	#bg-preload {
 		position: fixed;
-		inset: 0;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		height: 100dvh; /* Use dynamic viewport height */
 		z-index: -10;
 		pointer-events: none;
 		overflow: hidden;

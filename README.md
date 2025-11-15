@@ -18,9 +18,9 @@ A sleek, interactive calculator for League of Legends' Garen ultimate ability (D
 ### Items
 - **Collector**: Adds 5% max HP damage
 - **Spear of Shojin**: +12% damage
-- **Axiom Arc**: +12% damage
 
 ### Runes
+- **Axiom Arc**: +12% damage
 - **Press the Attack**: +8% damage
 - **Last Stand**: +11% damage
 
@@ -31,41 +31,6 @@ A sleek, interactive calculator for League of Legends' Garen ultimate ability (D
 - **TypeScript** - Type safety
 - **CSS Variables** - Dynamic theming
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Installation
-
-1. Clone the repository
-```bash
-git clone https://github.com/lamoo7/garen-ult-calculator.git
-cd garen-ult-calculator
-```
-
-2. Install dependencies
-```bash
-npm install
-```
-
-3. Start the development server
-```bash
-npm run dev
-```
-
-4. Open [http://localhost:4321](http://localhost:4321) in your browser
-
-## 📦 Commands
-
-| Command | Action |
-|---------|--------|
-| `npm install` | Installs dependencies |
-| `npm run dev` | Starts local dev server at `localhost:4321` |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Preview your build locally |
 
 ## 🎨 Features in Detail
 
@@ -88,16 +53,6 @@ npm run dev
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to open issues or submit pull requests.
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Riot Games for League of Legends
-- Garen skin artwork from League of Legends
-- Built with assistance from GitHub Copilot
 
 ---
 

@@ -15,6 +15,7 @@ const { id, name, value, label, image, checked = false } = Astro.props;
 
 <input type="radio" {id} {name} {value} {checked} />
 <label for={id} class="ult">
+	<span class="rank-number">{value}</span>
 	{label} <Image src={image} alt={`rank ${value}`} width={65} height={65} />
 </label>
 
@@ -33,14 +34,33 @@ const { id, name, value, label, image, checked = false } = Astro.props;
 		cursor: pointer;
 		color: rgba(255, 255, 255, 0.9);
 		opacity: 0.75;
+		position: relative;
 	}
 
 	.ult :global(img) {
 		width: 45px;
+		height: 45px;
 		aspect-ratio: 1;
 		border: 3px solid var(--color-primary);
 		border-radius: var(--border-radius);
 		transition: border-width var(--transition), border-color 0.2s ease;
+		position: relative;
+	}
+
+	.rank-number {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-size: clamp(1.25rem, 4vw, 1.75rem);
+		font-weight: 900;
+		color: white;
+		text-shadow: 
+			0 2px 4px rgba(0, 0, 0, 0.9),
+			0 0 8px rgba(0, 0, 0, 0.6);
+		z-index: 1;
+		pointer-events: none;
+		line-height: 1;
 	}
 
 	input[type="radio"]:checked + .ult {

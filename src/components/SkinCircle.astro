@@ -1,0 +1,38 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+	image: ImageMetadata;
+	alt: string;
+	bgUrl: string;
+}
+
+const { image, alt, bgUrl } = Astro.props;
+---
+
+<Image
+	src={image}
+	alt={alt}
+	width={48}
+	height={48}
+	data-bg-url={bgUrl}
+	class="skin-circle"
+/>
+
+<style>
+	.skin-circle {
+		cursor: pointer;
+		border-radius: 50%;
+		transition: var(--transition);
+		border: 2px solid transparent;
+	}
+
+	.skin-circle:hover {
+		transform: scale(1.1);
+		border-color: var(--color-primary);
+	}
+
+	.skin-circle:active {
+		transform: scale(0.95);
+	}
+</style>

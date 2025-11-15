@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.15.7"
+    "astro": "^5.15.7",
+    "colorthief": "^2.6.0",
+    "node-vibrant": "^4.0.3"
   }
 }

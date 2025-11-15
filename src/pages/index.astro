@@ -1,52 +1,688 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import Button from '../components/Button.astro';
+import Layout from "../layouts/Layout.astro";
+import RankRadio from "../components/RankRadio.astro";
+import ItemCheckbox from "../components/ItemCheckbox.astro";
+import SkinCircle from "../components/SkinCircle.astro";
+import { Image } from "astro:assets";
+import ultImg from "../assets/img/ult.webp";
+import collectorImg from "../assets/img/collector.webp";
+import spearImg from "../assets/img/spear.webp";
+import axiomImg from "../assets/img/axiom.webp";
+import ptaImg from "../assets/img/pta.webp";
+import lastImg from "../assets/img/last.webp";
+
+// Circle images
+import OriginalCircle from "../assets/circles/Garen_OriginalCircle.webp";
+import SteelLegionCircle from "../assets/circles/Garen_SteelLegionCircle.webp";
+import WarringKingdomsCircle from "../assets/circles/Garen_WarringKingdomsCircle.webp";
+import GodKingCircle from "../assets/circles/Garen_God-KingCircle.webp";
+import DemaciaViceCircle from "../assets/circles/Garen_DemaciaViceCircle.webp";
+import MechaKingdomsCircle from "../assets/circles/Garen_MechaKingdomsCircle.webp";
+import PrestigeMechaCircle from "../assets/circles/Garen_PrestigeMechaKingdomsCircle.webp";
+import BattleAcademiaCircle from "../assets/circles/Garen_BattleAcademiaCircle.webp";
+import MythmakerCircle from "../assets/circles/Garen_MythmakerCircle.webp";
+import FallenGodKingCircle from "../assets/circles/Garen_FallenGod-KingCircle.webp";
+import VisionsCircle from "../assets/circles/Garen_VisionsoftheFallenCircle.png";
+
+// Background images
+import OriginalBg from "../assets/background/Garen.jpg";
+import SteelLegionBg from "../assets/background/Garen_Steel-LegionSkin.jpg";
+import WarringKingdomsBg from "../assets/background/Garen_Warring-KingdomsSkin.jpg";
+import GodKingBg from "../assets/background/Garen_God-KingSkin.jpg";
+import DemaciaViceBg from "../assets/background/Garen_Demacia-ViceSkin.jpg";
+import MechaKingdomsBg from "../assets/background/Garen_Mecha-KingdomsSkin.jpg";
+import PrestigeMechaBg from "../assets/background/Garen_Mecha-Kingdoms-PrestigeSkin.jpg";
+import BattleAcademiaBg from "../assets/background/Garen_Battle-AcademiaSkin.jpg";
+import MythmakerBg from "../assets/background/Garen_MythmakerSkin.jpg";
+import FallenGodKingBg from "../assets/background/Garen_FallenGod-KingSkin.jpg";
+import VisionsBg from "../assets/background/Garen_VisionsoftheFallenSkin.jpg";
+
+const backgroundImages = [
+	{ key: "Garen.jpg", src: OriginalBg },
+	{ key: "Garen_Steel-LegionSkin.jpg", src: SteelLegionBg },
+	{ key: "Garen_Warring-KingdomsSkin.jpg", src: WarringKingdomsBg },
+	{ key: "Garen_God-KingSkin.jpg", src: GodKingBg },
+	{ key: "Garen_Demacia-ViceSkin.jpg", src: DemaciaViceBg },
+	{ key: "Garen_Mecha-KingdomsSkin.jpg", src: MechaKingdomsBg },
+	{ key: "Garen_Mecha-Kingdoms-PrestigeSkin.jpg", src: PrestigeMechaBg },
+	{ key: "Garen_Battle-AcademiaSkin.jpg", src: BattleAcademiaBg },
+	{ key: "Garen_MythmakerSkin.jpg", src: MythmakerBg },
+	{ key: "Garen_FallenGod-KingSkin.jpg", src: FallenGodKingBg },
+	{ key: "Garen_VisionsoftheFallenSkin.jpg", src: VisionsBg },
+];
+
+const backgrounds = {
+	"Garen.jpg": OriginalBg.src,
+	"Garen_Steel-LegionSkin.jpg": SteelLegionBg.src,
+	"Garen_Warring-KingdomsSkin.jpg": WarringKingdomsBg.src,
+	"Garen_God-KingSkin.jpg": GodKingBg.src,
+	"Garen_Demacia-ViceSkin.jpg": DemaciaViceBg.src,
+	"Garen_Mecha-KingdomsSkin.jpg": MechaKingdomsBg.src,
+	"Garen_Mecha-Kingdoms-PrestigeSkin.jpg": PrestigeMechaBg.src,
+	"Garen_Battle-AcademiaSkin.jpg": BattleAcademiaBg.src,
+	"Garen_MythmakerSkin.jpg": MythmakerBg.src,
+	"Garen_FallenGod-KingSkin.jpg": FallenGodKingBg.src,
+	"Garen_VisionsoftheFallenSkin.jpg": VisionsBg.src,
+};
 ---
 
 <Layout>
-	<Header />
+	<!-- Hidden preloaded optimized background images -->
+	<div id="bg-preload" aria-hidden="true">
+		{
+			backgroundImages.map(({ key, src }) => (
+				<Image
+					src={src}
+					alt=""
+					widths={[640, 768, 1024, 1280, 1536, 1920, 2560]}
+					sizes="100vw"
+					quality={80}
+					format="webp"
+					data-bg-key={key}
+				/>
+			))
+		}
+	</div>
+
 	<main>
-		<section class="examples">
-			<h1>Button Examples</h1>
-			
-			<div class="button-group">
-				<h2>Primary Buttons</h2>
-				<Button size="sm">Small Primary</Button>
-				<Button>Medium Primary</Button>
-				<Button size="lg">Large Primary</Button>
+		<section>
+			<div>
+				<h2>
+					<span class="step">Step 1.</span>
+					<span class="outline"
+						>Select Ultimate Rank ( 1 / 2 / 3 )</span
+					>
+				</h2>
+
+				<div class="flex">
+					<RankRadio
+						id="rank1"
+						name="ultRank"
+						value="1"
+						label="•"
+						image={ultImg}
+						checked
+					/>
+					<RankRadio
+						id="rank2"
+						name="ultRank"
+						value="2"
+						label="••"
+						image={ultImg}
+					/>
+					<RankRadio
+						id="rank3"
+						name="ultRank"
+						value="3"
+						label="•••"
+						image={ultImg}
+					/>
+				</div>
 			</div>
 
-			<div class="button-group">
-				<h2>Secondary Buttons</h2>
-				<Button variant="secondary" size="sm">Small Secondary</Button>
-				<Button variant="secondary">Medium Secondary</Button>
-				<Button variant="secondary" size="lg">Large Secondary</Button>
-			</div>
+			<div>
+				<h2>
+					<span class="step">Step 2.</span>
+					<span class="outline">Select Items and Runes</span>
+				</h2>
 
-			<div class="button-group">
-				<h2>Outline Buttons</h2>
-				<Button variant="outline" size="sm">Small Outline</Button>
-				<Button variant="outline">Medium Outline</Button>
-				<Button variant="outline" size="lg">Large Outline</Button>
-			</div>
-
-			<div class="button-group">
-				<h2>Link Buttons</h2>
-				<Button href="/">Home Link</Button>
-				<Button href="/about" variant="secondary">About Link</Button>
-				<Button href="/contact" variant="outline">Contact Link</Button>
+				<div class="flex">
+					<ItemCheckbox
+						id="collector"
+						image={collectorImg}
+						alt="collector"
+					/>
+					<ItemCheckbox
+						id="spear_of_shojin"
+						image={spearImg}
+						alt="spear_of_shojin"
+						bonus={12}
+					/>
+					<ItemCheckbox
+						id="axiom_arcanist"
+						image={axiomImg}
+						alt="axiom_arcanist"
+						bonus={12}
+					/>
+					<ItemCheckbox
+						id="press_the_attack"
+						image={ptaImg}
+						alt="press_the_attack"
+						bonus={8}
+					/>
+					<ItemCheckbox
+						id="last_stand"
+						image={lastImg}
+						alt="last_stand"
+						bonus={11}
+					/>
+				</div>
 			</div>
 		</section>
+
+		<h2>
+			<span class="step">Step 3.</span>
+			<span class="outline">Select the enemy Max HP</span>
+		</h2>
+		<div class="center">
+			<input
+				type="number"
+				id="health"
+				placeholder="enemy HP"
+				min="500"
+				max="10000"
+			/>
+		</div>
+
+		<h2 id="bottom-text">
+			The enemy needs to be at <span id="result">0 HP</span> in order to be
+			executed
+		</h2>
+
+		<div class="center">
+			<progress class="hp-bar" value="1" max="1"></progress>
+		</div>
 	</main>
-	<Footer />
+
+	<div id="background-change">
+		<div id="circles">
+			<SkinCircle
+				image={OriginalCircle}
+				alt="default"
+				bgUrl="background/Garen.jpg"
+			/>
+			<SkinCircle
+				image={SteelLegionCircle}
+				alt="steel legion"
+				bgUrl="background/Garen_Steel-LegionSkin.jpg"
+			/>
+			<SkinCircle
+				image={WarringKingdomsCircle}
+				alt="warring kingdoms"
+				bgUrl="background/Garen_Warring-KingdomsSkin.jpg"
+			/>
+			<SkinCircle
+				image={GodKingCircle}
+				alt="god king"
+				bgUrl="background/Garen_God-KingSkin.jpg"
+			/>
+			<SkinCircle
+				image={DemaciaViceCircle}
+				alt="demacia vice"
+				bgUrl="background/Garen_Demacia-ViceSkin.jpg"
+			/>
+			<SkinCircle
+				image={MechaKingdomsCircle}
+				alt="mecha kingdoms"
+				bgUrl="background/Garen_Mecha-KingdomsSkin.jpg"
+			/>
+			<SkinCircle
+				image={PrestigeMechaCircle}
+				alt="mecha kingdoms prestige"
+				bgUrl="background/Garen_Mecha-Kingdoms-PrestigeSkin.jpg"
+			/>
+			<SkinCircle
+				image={BattleAcademiaCircle}
+				alt="battle academia"
+				bgUrl="background/Garen_Battle-AcademiaSkin.jpg"
+			/>
+			<SkinCircle
+				image={MythmakerCircle}
+				alt="mythmaker"
+				bgUrl="background/Garen_MythmakerSkin.jpg"
+			/>
+			<SkinCircle
+				image={FallenGodKingCircle}
+				alt="fallen god king"
+				bgUrl="background/Garen_FallenGod-KingSkin.jpg"
+			/>
+			<SkinCircle
+				image={VisionsCircle}
+				alt="visions of the fallen"
+				bgUrl="background/Garen_VisionsoftheFallenSkin.jpg"
+			/>
+		</div>
+	</div>
 </Layout>
 
 <style>
+	/* Hidden preload container */
+	#bg-preload {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: -10;
+		pointer-events: none;
+		overflow: hidden;
+	}
+
+	#bg-preload img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	/* Global Styles */
+	* {
+		box-sizing: border-box;
+		transition: var(--transition);
+		outline: none;
+	}
+
+	/* Main Container */
 	main {
+		padding: var(--space-md);
+		border-radius: var(--space-md);
+		display: grid;
+		gap: var(--space-sm);
+		width: 90%;
 		max-width: var(--max-width);
-		margin-inline: auto;
-		padding: var(--space-xl) var(--space-md);
+		background: var(--transparency);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+	}
+
+	/* Typography */
+	h2 {
+		text-align: center;
+		color: var(--color-text);
+		margin: 0;
+	}
+
+	.step {
+		color: var(--color-background);
+		font-weight: 700;
+	}
+
+	.outline {
+		color: rgba(255, 255, 255, 0.9);
+		font-weight: 600;
+	}
+
+	#bottom-text {
+		font-size: var(--font-size-2xl);
+		color: rgba(255, 255, 255, 0.95);
+		margin-top: var(--space-xl);
+	}
+
+	#result {
+		color: #ff4444;
+		font-weight: 900;
+	}
+
+	/* Layout Utilities */
+	.flex {
+		display: flex;
+		justify-content: center;
+		gap: var(--space-sm);
+		flex-wrap: wrap;
+	}
+
+	.center {
+		display: grid;
+		place-items: center;
+		gap: var(--space-md);
+	}
+
+	section {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		gap: var(--space-lg);
+	}
+
+	/* Number Input */
+	input[type="number"] {
+		width: 22ch;
+		padding: var(--space-sm) var(--space-md);
+		font-size: var(--font-size-xl);
+		font-weight: 700;
+		color: var(--color-primary);
+		border: 2px solid var(--color-border);
+		border-radius: var(--border-radius);
+		background: var(--color-background);
+		transition:
+			color 0.2s ease,
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	input[type="number"]:focus {
+		border-color: var(--color-primary);
+		box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+	}
+
+	/* Button Customization */
+	.center :global(.justice-btn) {
+		margin-block: var(--space-md);
+		font-size: var(--font-size-2xl);
+		font-weight: 700;
+		border-radius: calc(var(--border-radius) * 4);
+		white-space: nowrap;
+	}
+
+	.center :global(.justice-btn:hover) {
+		transform: translateY(5px);
+		background: var(--color-secondary);
+		opacity: 1;
+	}
+
+	.center :global(.justice-btn:active) {
+		scale: 0.9;
+	}
+
+	/* Progress Bar */
+	.hp-bar {
+		width: 200px;
+		height: 30px;
+		border: 1px solid #4d4a46;
+		overflow: hidden;
+		margin-top: 1em;
+	}
+
+	.hp-bar::-webkit-progress-value {
+		background: linear-gradient(#c17a70, #a2261f, #551a17);
+	}
+
+	.hp-bar::-webkit-progress-bar {
+		background-color: #0d0d0b;
+	}
+
+	#background-change {
+		margin-block: 1rem;
+		padding: var(--space-sm);
+		background-color: var(--transparency);
+		border-radius: var(--space-sm);
+	}
+
+	#circles {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	/* Responsive Design */
+	@media screen and (min-width: 1000px) {
+		section {
+			flex-direction: row;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		main {
+			width: 95%;
+			padding: var(--space-xl);
+		}
+	}
+
+	* {
+		transition: all 0.2s ease;
 	}
 </style>
+
+<script>
+	// @ts-ignore
+	import ColorThief from "colorthief";
+
+	const rgbToHex = (r: number, g: number, b: number): string =>
+		"#" +
+		[r, g, b]
+			.map((x) => {
+				const hex = x.toString(16);
+				return hex.length === 1 ? "0" + hex : hex;
+			})
+			.join("");
+
+	function updatePrimaryColor(img: HTMLImageElement): void {
+		const colorThief = new ColorThief();
+
+		if (img.complete) {
+			try {
+				// Get palette of colors and find the most vibrant one
+				const palette = colorThief.getPalette(img, 5);
+
+				// Calculate vibrance for each color (saturation-like metric)
+				const mostVibrant = palette.reduce(
+					(best: number[], current: number[]) => {
+						const [r, g, b] = current;
+						const max = Math.max(r, g, b);
+						const min = Math.min(r, g, b);
+						const vibrance = max - min; // Simple vibrance calculation
+
+						const [bestR, bestG, bestB] = best;
+						const bestMax = Math.max(bestR, bestG, bestB);
+						const bestMin = Math.min(bestR, bestG, bestB);
+						const bestVibrance = bestMax - bestMin;
+
+						return vibrance > bestVibrance ? current : best;
+					},
+				);
+
+				const hexColor = rgbToHex(
+					mostVibrant[0],
+					mostVibrant[1],
+					mostVibrant[2],
+				);
+				document.documentElement.style.setProperty(
+					"--color-primary",
+					hexColor,
+				);
+			} catch (err) {
+				console.error("Color extraction failed:", err);
+			}
+		} else {
+			img.addEventListener("load", function () {
+				try {
+					const palette = colorThief.getPalette(img, 5);
+					const mostVibrant = palette.reduce(
+						(best: number[], current: number[]) => {
+							const [r, g, b] = current;
+							const max = Math.max(r, g, b);
+							const min = Math.min(r, g, b);
+							const vibrance = max - min;
+
+							const [bestR, bestG, bestB] = best;
+							const bestMax = Math.max(bestR, bestG, bestB);
+							const bestMin = Math.min(bestR, bestG, bestB);
+							const bestVibrance = bestMax - bestMin;
+
+							return vibrance > bestVibrance ? current : best;
+						},
+					);
+
+					const hexColor = rgbToHex(
+						mostVibrant[0],
+						mostVibrant[1],
+						mostVibrant[2],
+					);
+					document.documentElement.style.setProperty(
+						"--color-primary",
+						hexColor,
+					);
+				} catch (err) {
+					console.error("Color extraction failed:", err);
+				}
+			});
+		}
+	}
+
+	// Make function available globally
+	(window as any).updatePrimaryColor = updatePrimaryColor;
+</script>
+
+<script define:vars={{ backgrounds }}>
+	// Background crossfade using optimized Image elements
+	document.addEventListener("DOMContentLoaded", () => {
+		const skinCircles = document.querySelectorAll("#circles .skin-circle");
+		const bgPreload = document.getElementById("bg-preload");
+		const preloadedImages = bgPreload.querySelectorAll("img[data-bg-key]");
+		let isTransitioning = false;
+
+		// Load saved background from localStorage or use default
+		let currentBgKey =
+			localStorage.getItem("selectedBackground") || "Garen.jpg";
+
+		// Hide all images except the saved/default one
+		preloadedImages.forEach((img) => {
+			const key = img.getAttribute("data-bg-key");
+			if (key === currentBgKey) {
+				img.style.opacity = "1";
+				img.style.zIndex = "-2";
+				// Extract and set primary color from current background
+				window.updatePrimaryColor(img);
+			} else {
+				img.style.opacity = "0";
+				img.style.zIndex = "-3";
+			}
+		});
+
+		// Show the preload container
+		bgPreload.style.opacity = "1";
+
+		skinCircles.forEach((circle) => {
+			circle.addEventListener("click", () => {
+				if (isTransitioning) return;
+
+				const bgUrl = circle.getAttribute("data-bg-url");
+				if (!bgUrl) return;
+
+				const filename = bgUrl.split("/").pop();
+				if (filename === currentBgKey) return;
+
+				// Find the target image
+				const targetImg = Array.from(preloadedImages).find(
+					(img) => img.getAttribute("data-bg-key") === filename,
+				);
+
+				if (!targetImg) return;
+
+				isTransitioning = true;
+
+				// Prepare target image on top
+				targetImg.style.zIndex = "-1";
+				targetImg.style.opacity = "0";
+
+				// Fade in the new image
+				requestAnimationFrame(() => {
+					requestAnimationFrame(() => {
+						targetImg.style.opacity = "1";
+
+						setTimeout(() => {
+							// Find and reset old image
+							preloadedImages.forEach((img) => {
+								const key = img.getAttribute("data-bg-key");
+								if (key === currentBgKey) {
+									img.style.zIndex = "-3";
+									img.style.opacity = "0";
+								}
+							});
+
+							// Update current image z-index
+							targetImg.style.zIndex = "-2";
+							currentBgKey = filename;
+
+							// Save selected background to localStorage
+							localStorage.setItem(
+								"selectedBackground",
+								filename,
+							);
+
+							// Extract and set primary color from new background
+							window.updatePrimaryColor(targetImg);
+
+							isTransitioning = false;
+						}, 200);
+					});
+				});
+			});
+		});
+	});
+
+	// Calculator functionality
+	function calculate() {
+		const healthInput = document.getElementById("health");
+		const enemyHealth = parseInt(healthInput.value);
+
+		if (!enemyHealth || enemyHealth < 500) return;
+
+		const selectedRank = document.querySelector(
+			'input[name="ultRank"]:checked',
+		).value;
+
+		let base, missingHealthPercentage;
+		switch (selectedRank) {
+			case "1":
+				base = 150;
+				missingHealthPercentage = 0.25;
+				break;
+			case "2":
+				base = 250;
+				missingHealthPercentage = 0.3;
+				break;
+			case "3":
+				base = 350;
+				missingHealthPercentage = 0.35;
+				break;
+		}
+
+		// First get total bonus multiplier
+		let totalBonus = 1;
+		const checkedBonuses = document.querySelectorAll(".bonus:checked");
+		checkedBonuses.forEach((bonus) => {
+			const bonusValue = parseFloat(bonus.dataset.bonus) / 100;
+			totalBonus *= 1 + bonusValue;
+		});
+
+		// Calculate missing health needed for execution
+		const missingHealthNeeded =
+			(enemyHealth - base) / (1 + missingHealthPercentage);
+
+		// Calculate ultimate damage with base damage
+		let ultDamage = base + missingHealthPercentage * missingHealthNeeded;
+
+		// Apply damage bonuses
+		ultDamage *= totalBonus;
+
+		// Add collector damage if checked
+		if (document.getElementById("collector").checked) {
+			ultDamage += enemyHealth * 0.05;
+		}
+
+		document.getElementById("result").textContent =
+			Math.floor(ultDamage) + " HP";
+
+		// Update progress bar
+		const progressBar = document.querySelector(".hp-bar");
+		progressBar.max = enemyHealth;
+		progressBar.value = Math.floor(ultDamage);
+	}
+
+	// Auto-calculate on input changes
+	document.addEventListener("DOMContentLoaded", () => {
+		const healthInput = document.getElementById("health");
+		const rankInputs = document.querySelectorAll('input[name="ultRank"]');
+		const bonusCheckboxes = document.querySelectorAll(".bonus");
+		const collectorCheckbox = document.getElementById("collector");
+
+		healthInput.addEventListener("input", calculate);
+		rankInputs.forEach((input) =>
+			input.addEventListener("change", calculate),
+		);
+		bonusCheckboxes.forEach((checkbox) =>
+			checkbox.addEventListener("change", calculate),
+		);
+		if (collectorCheckbox)
+			collectorCheckbox.addEventListener("change", calculate);
+
+		// Initial calculation
+		calculate();
+	});
+</script>

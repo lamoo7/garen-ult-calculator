@@ -5,7 +5,8 @@
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Template</title>
+		<title>Garen Ultimate Calculator</title>
+		<meta name="description" content="Calculate Garen's ultimate damage with items, runes, and enemy stats" />
 	</head>
 	<body>
 		<slot />
@@ -21,6 +22,9 @@
 		font-family: var(--font-family);
 		font-size: var(--font-size-base);
 		color: var(--color-text);
-		background-color: var(--color-background);
+		position: relative;
+
+		display: grid;
+		place-items: center;
 	}
 </style>

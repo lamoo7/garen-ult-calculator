@@ -1,10 +1,9 @@
 :root {
 	/* Colors */
-	--color-primary: #000;
-	--color-secondary: #666;
-	--color-background: #fff;
-	--color-text: #000;
-	--color-border: #e5e5e5;
+	--color-primary: #667eea;
+	--color-background: #f8f9fa;
+	--color-text: #1a1a2e;
+	--transparency: #0000005a;
 
 	/* Spacing */
 	--space-xs: 0.25rem;
@@ -27,4 +26,12 @@
 
 	/* Transitions */
 	--transition: 0.2s ease;
+	
+	/* Smooth color transition */
+	transition: --color-primary 0.2s ease;
+}
+
+/* Enable smooth color transitions */
+* {
+	transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
 }

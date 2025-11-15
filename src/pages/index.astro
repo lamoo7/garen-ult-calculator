@@ -246,29 +246,33 @@ const backgrounds = {
 </Layout>
 
 <style>
-	/* Hidden preload container */
+	/* ===== RESET & BASE ===== */
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* ===== BACKGROUND SYSTEM ===== */
 	#bg-preload {
 		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		inset: 0;
 		z-index: -10;
 		pointer-events: none;
 		overflow: hidden;
-		opacity: 1;
 	}
 
 	#bg-preload img {
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset: 0;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		object-position: center;
-		transition: opacity 0.2s ease-in-out;
 		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
 	}
 
 	#bg-preload img[data-bg-key="Garen.jpg"] {
@@ -276,34 +280,35 @@ const backgrounds = {
 		z-index: -2;
 	}
 
-	/* Global Styles */
-	* {
-		box-sizing: border-box;
-		transition: var(--transition);
-		outline: none;
-	}
-
-	/* Main Container */
-	main {
-		padding: var(--space-md);
-		border-radius: var(--space-md);
-		display: grid;
-		gap: var(--space-sm);
-		width: 90%;
-		max-width: var(--max-width);
-		background: var(--transparency);
+	/* ===== LAYOUT CONTAINER ===== */
+	main,
+	#background-change {
+		width: min(90%, 1200px);
+		margin-inline: auto;
+		padding: clamp(1rem, 3vw, 1.5rem);
+		border-radius: 1rem;
+		background: rgba(0, 0, 0, 0.35);
 		backdrop-filter: blur(4px);
 		-webkit-backdrop-filter: blur(4px);
-
-		margin-block: var(--space-sm);
-		margin-inline: auto;
 	}
 
-	/* Typography */
+	main {
+		margin-block: clamp(0.5rem, 2vw, 1rem);
+		display: grid;
+		gap: clamp(1rem, 3vw, 2rem);
+	}
+
+	#background-change {
+		margin-block: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 3vw, 2rem);
+		padding: clamp(0.75rem, 2vw, 1rem);
+	}
+
+	/* ===== TYPOGRAPHY ===== */
 	h2 {
 		text-align: center;
 		color: var(--color-text);
-		margin: 0;
+		font-size: clamp(1rem, 2.5vw, 1.25rem);
+		line-height: 1.4;
 	}
 
 	.step {
@@ -317,127 +322,145 @@ const backgrounds = {
 	}
 
 	#bottom-text {
-		font-size: var(--font-size-2xl);
+		font-size: clamp(1.25rem, 4vw, 2rem);
 		color: rgba(255, 255, 255, 0.95);
-		margin-top: var(--space-xl);
+		margin-top: clamp(1.5rem, 4vw, 3rem);
+		padding-inline: 1rem;
 	}
 
 	#result {
 		color: #ff4444;
 		font-weight: 900;
+		white-space: nowrap;
 	}
 
-	/* Layout Utilities */
+	/* ===== SECTION LAYOUT ===== */
+	section {
+		display: flex;
+		flex-direction: column;
+		gap: clamp(1.5rem, 4vw, 2rem);
+	}
+
+	section > div {
+		display: grid;
+		gap: 1rem;
+	}
+
+	/* ===== FLEX UTILITIES ===== */
 	.flex {
 		display: flex;
 		justify-content: center;
-		gap: var(--space-sm);
+		align-items: center;
+		gap: clamp(0.5rem, 2vw, 1rem);
 		flex-wrap: wrap;
+		padding-inline: 0.5rem;
 	}
 
 	.center {
 		display: grid;
 		place-items: center;
-		gap: var(--space-md);
+		gap: 1rem;
 	}
 
-	section {
+	/* ===== SKIN CIRCLES ===== */
+	#circles {
 		display: flex;
-		justify-content: space-between;
-		flex-direction: column;
-		gap: var(--space-lg);
+		justify-content: center;
+		align-items: center;
+		gap: clamp(0.5rem, 2vw, 1rem);
+		flex-wrap: wrap;
+		padding: 0.5rem;
 	}
 
-	/* Number Input */
+	/* ===== INPUT FIELD ===== */
 	input[type="number"] {
-		width: 22ch;
-		padding: var(--space-sm) var(--space-md);
-		font-size: var(--font-size-xl);
+		width: min(22ch, 90vw);
+		max-width: 100%;
+		padding: 0.75rem 1rem;
+		font-size: clamp(1.25rem, 4vw, 1.5rem);
 		font-weight: 700;
 		color: var(--color-primary);
-		border: 2px solid var(--color-border);
-		border-radius: var(--border-radius);
+		border: 2px solid transparent;
+		border-radius: 0.5rem;
 		background: var(--color-background);
-		transition:
-			color 0.2s ease,
-			border-color 0.2s ease,
-			box-shadow 0.2s ease;
+		text-align: center;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
 	}
 
 	input[type="number"]:focus {
 		border-color: var(--color-primary);
 		box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+		outline: none;
 	}
 
-	/* Button Customization */
-	.center :global(.justice-btn) {
-		margin-block: var(--space-md);
-		font-size: var(--font-size-2xl);
-		font-weight: 700;
-		border-radius: calc(var(--border-radius) * 4);
-		white-space: nowrap;
+	/* Remove number input spinners */
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 
-	.center :global(.justice-btn:hover) {
-		transform: translateY(5px);
-		background: var(--color-secondary);
-		opacity: 1;
+	input[type="number"] {
+		-moz-appearance: textfield;
 	}
 
-	.center :global(.justice-btn:active) {
-		scale: 0.9;
-	}
-
-	/* Progress Bar */
+	/* ===== PROGRESS BAR ===== */
 	.hp-bar {
-		width: 200px;
+		width: min(200px, 80vw);
 		height: 30px;
 		border: 1px solid #4d4a46;
+		border-radius: 4px;
 		overflow: hidden;
-		margin-top: 1em;
+		margin-top: 1rem;
 	}
 
 	.hp-bar::-webkit-progress-value {
-		background: linear-gradient(#c17a70, #a2261f, #551a17);
+		background: linear-gradient(to bottom, #c17a70, #a2261f, #551a17);
 	}
 
 	.hp-bar::-webkit-progress-bar {
 		background-color: #0d0d0b;
 	}
 
-	#background-change {
-		padding: var(--space-sm);
-		background-color: var(--transparency);
-		border-radius: var(--space-sm);
-		width: 90%;
-		max-width: var(--max-width);
-		margin-inline: auto;
-		margin-block: var(--space-sm);
+	.hp-bar::-moz-progress-bar {
+		background: linear-gradient(to bottom, #c17a70, #a2261f, #551a17);
 	}
 
-	#circles {
-		display: flex;
-		justify-content: center;
-		gap: 1rem;
-		flex-wrap: wrap;
+	/* ===== TRANSITIONS ===== */
+	* {
+		transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
 	}
 
-	/* Responsive Design */
-	@media screen and (min-width: 1000px) {
+	/* ===== RESPONSIVE BREAKPOINTS ===== */
+	@media (min-width: 768px) {
 		section {
 			flex-direction: row;
+			justify-content: space-around;
+		}
+
+		section > div {
+			flex: 1;
+			max-width: 500px;
 		}
 	}
 
-	@media screen and (max-width: 768px) {
-		main {
-			padding: var(--space-xl);
-			margin-inline: auto;
+	@media (min-width: 1024px) {
+		main,
+		#background-change {
+			width: min(85%, 1200px);
 		}
 	}
 
-	* {
-		transition: all 0.2s ease;
+	/* Prevent layout shift on smaller screens */
+	@media (max-width: 480px) {
+		h2 {
+			word-break: break-word;
+			hyphens: auto;
+		}
+
+		#bottom-text {
+			font-size: 1.1rem;
+		}
 	}
 </style>
 

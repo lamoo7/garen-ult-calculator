@@ -256,6 +256,7 @@ const backgrounds = {
 		z-index: -10;
 		pointer-events: none;
 		overflow: hidden;
+		opacity: 1;
 	}
 
 	#bg-preload img {
@@ -267,6 +268,12 @@ const backgrounds = {
 		object-fit: cover;
 		object-position: center;
 		transition: opacity 0.2s ease-in-out;
+		opacity: 0;
+	}
+
+	#bg-preload img[data-bg-key="Garen.jpg"] {
+		opacity: 1;
+		z-index: -2;
 	}
 
 	/* Global Styles */

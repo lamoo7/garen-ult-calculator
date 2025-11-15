@@ -1,8 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Icon from '../components/Icon.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
 ---
 
 <Layout>
-	<Icon name="arrow" />
+	<Header />
+	<main>
+		<section class="examples">
+			<h1>Button Examples</h1>
+			
+			<div class="button-group">
+				<h2>Primary Buttons</h2>
+				<Button size="sm">Small Primary</Button>
+				<Button>Medium Primary</Button>
+				<Button size="lg">Large Primary</Button>
+			</div>
+
+			<div class="button-group">
+				<h2>Secondary Buttons</h2>
+				<Button variant="secondary" size="sm">Small Secondary</Button>
+				<Button variant="secondary">Medium Secondary</Button>
+				<Button variant="secondary" size="lg">Large Secondary</Button>
+			</div>
+
+			<div class="button-group">
+				<h2>Outline Buttons</h2>
+				<Button variant="outline" size="sm">Small Outline</Button>
+				<Button variant="outline">Medium Outline</Button>
+				<Button variant="outline" size="lg">Large Outline</Button>
+			</div>
+
+			<div class="button-group">
+				<h2>Link Buttons</h2>
+				<Button href="/">Home Link</Button>
+				<Button href="/about" variant="secondary">About Link</Button>
+				<Button href="/contact" variant="outline">Contact Link</Button>
+			</div>
+		</section>
+	</main>
+	<Footer />
 </Layout>
+
+<style>
+	main {
+		max-width: var(--max-width);
+		margin-inline: auto;
+		padding: var(--space-xl) var(--space-md);
+	}
+</style>

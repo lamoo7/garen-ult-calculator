@@ -1,0 +1,30 @@
+:root {
+	/* Colors */
+	--color-primary: #000;
+	--color-secondary: #666;
+	--color-background: #fff;
+	--color-text: #000;
+	--color-border: #e5e5e5;
+
+	/* Spacing */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 2rem;
+	--space-xl: 4rem;
+
+	/* Typography */
+	--font-family: system-ui, sans-serif;
+	--font-size-sm: 0.875rem;
+	--font-size-base: 1rem;
+	--font-size-lg: 1.25rem;
+	--font-size-xl: 1.5rem;
+	--font-size-2xl: 2rem;
+
+	/* Layout */
+	--max-width: 1200px;
+	--border-radius: 0.25rem;
+
+	/* Transitions */
+	--transition: 0.2s ease;
+}

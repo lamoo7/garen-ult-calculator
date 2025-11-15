@@ -1,0 +1,85 @@
+---
+export interface Props {
+	href?: string;
+	variant?: 'primary' | 'secondary' | 'outline';
+	size?: 'sm' | 'md' | 'lg';
+	class?: string;
+}
+
+const { 
+	href, 
+	variant = 'primary', 
+	size = 'md', 
+	class: className 
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+---
+
+<Tag 
+	href={href}
+	class={`btn btn-${variant} btn-${size} ${className || ''}`}
+>
+	<slot />
+</Tag>
+
+<style>
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		text-decoration: none;
+		border: none;
+		cursor: pointer;
+		font-family: var(--font-family);
+		font-weight: 500;
+		transition: all var(--transition);
+		border-radius: var(--border-radius);
+	}
+
+	/* Sizes */
+	.btn-sm {
+		padding: var(--space-sm) var(--space-md);
+		font-size: var(--font-size-sm);
+	}
+
+	.btn-md {
+		padding: var(--space-md) var(--space-lg);
+		font-size: var(--font-size-base);
+	}
+
+	.btn-lg {
+		padding: var(--space-md) var(--space-xl);
+		font-size: var(--font-size-lg);
+	}
+
+	/* Variants */
+	.btn-primary {
+		background-color: var(--color-primary);
+		color: var(--color-background);
+	}
+
+	.btn-primary:hover {
+		opacity: 0.9;
+	}
+
+	.btn-secondary {
+		background-color: var(--color-secondary);
+		color: var(--color-background);
+	}
+
+	.btn-secondary:hover {
+		opacity: 0.9;
+	}
+
+	.btn-outline {
+		background-color: transparent;
+		color: var(--color-primary);
+		border: 1px solid var(--color-border);
+	}
+
+	.btn-outline:hover {
+		background-color: var(--color-primary);
+		color: var(--color-background);
+	}
+</style>

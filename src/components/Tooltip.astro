@@ -1,0 +1,49 @@
+---
+export interface Props {
+	text: string;
+	anchorName: string;
+}
+
+const { text, anchorName } = Astro.props;
+---
+
+<div class="tooltip" style={`position-anchor: --${anchorName};`}>
+	{text}
+</div>
+
+<style>
+	.tooltip {
+		/* Positioning with CSS anchor */
+		position: fixed;
+		position-area: bottom;
+		position-try-fallbacks: flip-block, flip-inline, flip-block flip-inline;
+		margin-top: calc(var(--space-sm) - 2px);
+		
+		/* Visual styling */
+		background: linear-gradient(135deg, rgba(30, 30, 50, 0.95), rgba(20, 20, 40, 0.98));
+		color: white;
+		padding: var(--space-xs) var(--space-sm);
+		border-radius: var(--border-radius);
+		font-size: var(--font-size-sm);
+		white-space: nowrap;
+		z-index: 1000;
+		pointer-events: none;
+		
+		/* Border glow effect */
+		border: 1px solid var(--color-primary);
+		box-shadow: 
+			0 4px 12px rgba(0, 0, 0, 0.4),
+			0 0 8px color-mix(in srgb, var(--color-primary) 30%, transparent);
+		
+		/* Animation */
+		opacity: 0;
+		scale: 0.9;
+		transition: 
+			opacity 0.15s ease-out,
+			scale 0.15s ease-out;
+		    transition-behavior: allow-discrete;
+		
+		/* Initially hidden */
+		display: none;
+	}
+</style>

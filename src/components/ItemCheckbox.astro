@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Tooltip from "./Tooltip.astro";
 
 export interface Props {
 	id: string;
@@ -7,23 +8,48 @@ export interface Props {
 	alt: string;
 	bonus?: number;
 	class?: string;
+	tooltip?: string;
 }
 
-const { id, image, alt, bonus, class: className } = Astro.props;
+const { id, image, alt, bonus, class: className, tooltip } = Astro.props;
 const classes = bonus ? `bonus ${className || ''}` : className || 'collector';
+const tooltipText = tooltip || alt.replace(/_/g, ' ');
+const anchorName = `item-${id}`;
 ---
 
-<input 
-	type="checkbox" 
-	{id} 
-	class={classes}
-	data-bonus={bonus?.toString() || '0'}
-/>
-<label for={id} class="increases">
-	<Image src={image} {alt} width={65} height={65} />
-</label>
+<div class="item-wrapper">
+	<input 
+		type="checkbox" 
+		{id} 
+		class={classes}
+		data-bonus={bonus?.toString() || '0'}
+	/>
+	<label for={id} class="increases" style={`anchor-name: --${anchorName};`}>
+		<Image src={image} {alt} width={65} height={65} />
+	</label>
+	<Tooltip text={tooltipText} anchorName={anchorName} />
+</div>
 
 <style>
+	.item-wrapper {
+		display: contents;
+	}
+
+	.item-wrapper:hover :global(.tooltip),
+	.item-wrapper:focus-within :global(.tooltip) {
+		display: block;
+		opacity: 1;
+		scale: 1;
+	}
+
+	@starting-style {
+		.item-wrapper:hover :global(.tooltip),
+		.item-wrapper:focus-within :global(.tooltip) {
+			opacity: 0;
+			scale: 0.9;
+		}
+	}
+
 	input[type="checkbox"] {
 		display: none;
 	}
@@ -34,6 +60,28 @@ const classes = bonus ? `bonus ${className || ''}` : className || 'collector';
 		transition: filter var(--transition), opacity var(--transition);
 		cursor: pointer;
 		opacity: 0.75;
+		position: relative;
+	}
+
+	/* Arrow pointing to tooltip */
+	.increases::after {
+		content: '';
+		position: absolute;
+		bottom: -6px;
+		left: 50%;
+		translate: -50% 0;
+		border: 6px solid transparent;
+		border-bottom-color: var(--color-primary);
+		filter: drop-shadow(0 -2px 2px rgba(0, 0, 0, 0.3));
+		opacity: 0;
+		transition: opacity 0.15s ease-out;
+		pointer-events: none;
+		z-index: 1001;
+	}
+
+	.item-wrapper:hover .increases::after,
+	.item-wrapper:focus-within .increases::after {
+		opacity: 1;
 	}
 
 	.increases :global(img) {

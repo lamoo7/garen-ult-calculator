@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Tooltip from "./Tooltip.astro";
 
 export interface Props {
 	id: string;
@@ -8,18 +9,43 @@ export interface Props {
 	label: string;
 	image: ImageMetadata;
 	checked?: boolean;
+	tooltip?: string;
 }
 
-const { id, name, value, label, image, checked = false } = Astro.props;
+const { id, name, value, label, image, checked = false, tooltip } = Astro.props;
+const tooltipText = tooltip || `Rank ${value}`;
+const anchorName = `rank-${id}`;
 ---
 
-<input type="radio" {id} {name} {value} {checked} />
-<label for={id} class="ult">
-	<span class="rank-number">{value}</span>
-	{label} <Image src={image} alt={`rank ${value}`} width={65} height={65} />
-</label>
+<div class="rank-wrapper">
+	<input type="radio" {id} {name} {value} {checked} />
+	<label for={id} class="ult" style={`anchor-name: --${anchorName};`}>
+		<span class="rank-number">{value}</span>
+		{label} <Image src={image} alt={`rank ${value}`} width={65} height={65} />
+	</label>
+	<Tooltip text={tooltipText} anchorName={anchorName} />
+</div>
 
 <style>
+	.rank-wrapper {
+		display: contents;
+	}
+
+	.rank-wrapper:hover :global(.tooltip),
+	.rank-wrapper:focus-within :global(.tooltip) {
+		display: block;
+		opacity: 1;
+		scale: 1;
+	}
+
+	@starting-style {
+		.rank-wrapper:hover :global(.tooltip),
+		.rank-wrapper:focus-within :global(.tooltip) {
+			opacity: 0;
+			scale: 0.9;
+		}
+	}
+
 	input[type="radio"] {
 		display: none;
 	}
@@ -35,6 +61,27 @@ const { id, name, value, label, image, checked = false } = Astro.props;
 		color: rgba(255, 255, 255, 0.9);
 		opacity: 0.75;
 		position: relative;
+	}
+
+	/* Arrow pointing to tooltip */
+	.ult::after {
+		content: '';
+		position: absolute;
+		bottom: -6px;
+		left: 50%;
+		translate: -50% 0;
+		border: 6px solid transparent;
+		border-bottom-color: var(--color-primary);
+		filter: drop-shadow(0 -2px 2px rgba(0, 0, 0, 0.3));
+		opacity: 0;
+		transition: opacity 0.15s ease-out;
+		pointer-events: none;
+		z-index: 1001;
+	}
+
+	.rank-wrapper:hover .ult::after,
+	.rank-wrapper:focus-within .ult::after {
+		opacity: 1;
 	}
 
 	.ult :global(img) {

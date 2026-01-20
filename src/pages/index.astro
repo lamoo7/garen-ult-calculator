@@ -10,6 +10,7 @@ import spearImg from "../assets/img/spear.webp";
 import axiomImg from "../assets/img/axiom.webp";
 import ptaImg from "../assets/img/pta.webp";
 import lastImg from "../assets/img/last.webp";
+import ldrImg from "../assets/img/ldr.webp";
 
 // Circle images
 import OriginalCircle from "../assets/circles/Garen_OriginalCircle.webp";
@@ -101,6 +102,7 @@ const backgrounds = {
 						value="1"
 						label="•"
 						image={ultImg}
+						tooltip="Ultimate Rank 1 • 150 + 25% missing health"
 						checked
 					/>
 					<RankRadio
@@ -109,6 +111,7 @@ const backgrounds = {
 						value="2"
 						label="••"
 						image={ultImg}
+						tooltip="Ultimate Rank 2 • 250 + 30% missing health"
 					/>
 					<RankRadio
 						id="rank3"
@@ -116,6 +119,7 @@ const backgrounds = {
 						value="3"
 						label="•••"
 						image={ultImg}
+						tooltip="Ultimate Rank 3 • 350 + 35% missing health"
 					/>
 				</div>
 			</div>
@@ -131,30 +135,42 @@ const backgrounds = {
 						id="collector"
 						image={collectorImg}
 						alt="collector"
+						tooltip="The Collector • Execute below 5%"
 					/>
 					<ItemCheckbox
 						id="spear_of_shojin"
 						image={spearImg}
 						alt="spear_of_shojin"
 						bonus={12}
+						tooltip="Spear of Shojin • +12% bonus damage"
+					/>
+					<ItemCheckbox
+						id="lord_dominiks_regards"
+						image={ldrImg}
+						alt="lord_dominiks_regards"
+						bonus={15}
+						tooltip="Lord Dominik's Regards • +15% bonus damage"
 					/>
 					<ItemCheckbox
 						id="axiom_arcanist"
 						image={axiomImg}
 						alt="axiom_arcanist"
 						bonus={12}
+						tooltip="Axiom Arc • +12% bonus damage"
 					/>
 					<ItemCheckbox
 						id="press_the_attack"
 						image={ptaImg}
 						alt="press_the_attack"
 						bonus={8}
+						tooltip="Press the Attack • +8% bonus damage"
 					/>
 					<ItemCheckbox
 						id="last_stand"
 						image={lastImg}
 						alt="last_stand"
 						bonus={11}
+						tooltip="Last Stand • +11% bonus damage"
 					/>
 				</div>
 			</div>
@@ -354,9 +370,8 @@ const backgrounds = {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: clamp(0.5rem, 2vw, 1rem);
+		gap: 0.15rem;
 		flex-wrap: wrap;
-		padding-inline: 0.5rem;
 	}
 
 	.center {

@@ -18,6 +18,7 @@ A sleek, interactive calculator for League of Legends' Garen ultimate ability (D
 ### Items
 - **Collector**: Adds 5% max HP damage
 - **Spear of Shojin**: +12% damage
+- **Lord Dominik's Regards**: +15% damage
 
 ### Runes
 - **Axiom Arc**: +12% damage

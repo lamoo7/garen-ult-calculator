@@ -484,7 +484,7 @@ const backgrounds = {
 
 <script>
 	// @ts-ignore
-	import ColorThief from "colorthief";
+	import ColorThief from "colorthief/dist/color-thief.mjs";
 
 	const rgbToHex = (r: number, g: number, b: number): string =>
 		"#" +
@@ -685,6 +685,9 @@ const backgrounds = {
 				break;
 		}
 
+		// If enemy health is not provided or less than 500, do not calculate
+		if (!enemyHealth || enemyHealth < 500) return;
+
 		// First get total bonus multiplier
 		let totalBonus = 1;
 		const checkedBonuses = document.querySelectorAll(".bonus:checked");
@@ -692,8 +695,6 @@ const backgrounds = {
 			const bonusValue = parseFloat(bonus.dataset.bonus) / 100;
 			totalBonus += bonusValue;
 		});
-
-		if (!enemyHealth || enemyHealth < 500) return;
 
 		const collector = document.getElementById("collector").checked;
 

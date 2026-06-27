@@ -665,8 +665,6 @@ const backgrounds = {
 		const healthInput = document.getElementById("health");
 		const enemyHealth = parseInt(healthInput.value);
 
-		if (!enemyHealth || enemyHealth < 500) return;
-
 		const selectedRank = document.querySelector(
 			'input[name="ultRank"]:checked',
 		).value;
@@ -692,23 +690,14 @@ const backgrounds = {
 		const checkedBonuses = document.querySelectorAll(".bonus:checked");
 		checkedBonuses.forEach((bonus) => {
 			const bonusValue = parseFloat(bonus.dataset.bonus) / 100;
-			totalBonus *= 1 + bonusValue;
+			totalBonus += bonusValue;
 		});
 
-		// Calculate missing health needed for execution
-		const missingHealthNeeded =
-			(enemyHealth - base) / (1 + missingHealthPercentage);
+		if (!enemyHealth || enemyHealth < 500) return;
 
-		// Calculate ultimate damage with base damage
-		let ultDamage = base + missingHealthPercentage * missingHealthNeeded;
+		const collector = document.getElementById("collector").checked;
 
-		// Apply damage bonuses
-		ultDamage *= totalBonus;
-
-		// Add collector damage if checked
-		if (document.getElementById("collector").checked) {
-			ultDamage += enemyHealth * 0.05;
-		}
+		const ultDamage = (base*totalBonus + (missingHealthPercentage*totalBonus + collector*0.05)*enemyHealth)/(1 + missingHealthPercentage*totalBonus) - collector;
 
 		document.getElementById("result").textContent =
 			Math.floor(ultDamage) + " HP";

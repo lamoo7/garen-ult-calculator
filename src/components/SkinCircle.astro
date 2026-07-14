@@ -1,38 +1,56 @@
 ---
 import { Image } from "astro:assets";
+import type { Skin } from "../data/skins";
 
 export interface Props {
-	image: ImageMetadata;
-	alt: string;
-	bgUrl: string;
+	skin: Skin;
 }
 
-const { image, alt, bgUrl } = Astro.props;
+const { skin } = Astro.props;
 ---
 
 <Image
-	src={image}
-	alt={alt}
+	src={skin.circle}
+	alt={skin.name}
+	title={skin.name}
 	width={48}
 	height={48}
-	data-bg-url={bgUrl}
+	data-skin-id={skin.id}
 	class="skin-circle"
+	role="button"
+	tabindex="0"
 />
 
 <style>
 	.skin-circle {
 		cursor: pointer;
 		border-radius: 50%;
-		transition: var(--transition);
 		border: 2px solid transparent;
+		opacity: 0.65;
+		transition: var(--transition);
 	}
 
 	.skin-circle:hover {
 		transform: scale(1.1);
 		border-color: var(--color-primary);
+		opacity: 1;
 	}
 
 	.skin-circle:active {
 		transform: scale(0.95);
+	}
+
+	.skin-circle:focus-visible {
+		outline: 3px solid #fff;
+		outline-offset: 2px;
+		opacity: 1;
+	}
+
+	/* Which skin you're actually looking at. The picker gave no sign of this
+	   before, so every circle looked equally unselected. */
+	.skin-circle.is-active {
+		opacity: 1;
+		border-color: var(--color-primary);
+		box-shadow: 0 0 10px color-mix(in srgb, var(--color-primary) 75%, transparent);
 	}
 </style>

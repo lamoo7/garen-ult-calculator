@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+import { DEFAULT_SKIN, SKINS } from "../data/skins";
+
+/**
+ * Every skin background, stacked and pre-decoded so switching skins is an
+ * opacity crossfade rather than a network fetch. The default layer is visible
+ * before JS runs; `initBackground` swaps in the saved skin.
+ */
+---
+
+<div id="bg-preload" aria-hidden="true">
+	{
+		SKINS.map((skin) => (
+			<Image
+				src={skin.background}
+				alt=""
+				widths={[640, 768, 1024, 1280, 1536, 1920, 2560]}
+				sizes="100vw"
+				quality={80}
+				format="webp"
+				data-skin-id={skin.id}
+				class:list={[skin.id === DEFAULT_SKIN.id && "is-default"]}
+			/>
+		))
+	}
+</div>
+
+<style>
+	#bg-preload {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100svh;
+		z-index: -10;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	#bg-preload :global(img) {
+		position: fixed;
+		inset: 0;
+		width: 100%;
+		height: 100vh;
+		object-fit: cover;
+		object-position: center;
+		opacity: 0;
+		transition: opacity 0.2s ease-in-out;
+	}
+
+	#bg-preload :global(img.is-default) {
+		opacity: 1;
+		z-index: -2;
+	}
+</style>

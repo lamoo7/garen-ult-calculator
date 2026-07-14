@@ -1,0 +1,178 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+	/** Doubles as the DOM id the calculator looks the toggle up by. */
+	id: string;
+	image: ImageMetadata;
+	alt: string;
+	/** Ranks are one-of-three (radio); items and runes stack freely (checkbox). */
+	variant?: "item" | "rank";
+	/** Radio group name. Required for `rank`. */
+	group?: string;
+	value?: string;
+	checked?: boolean;
+	/** Rank pips drawn above the icon. */
+	pips?: string;
+	/** Numeral overlaid on the icon. */
+	badge?: string;
+	/** Caption under the icon. */
+	caption?: string;
+	/** What it's worth, under the caption. */
+	effect?: string;
+}
+
+const {
+	id,
+	image,
+	alt,
+	variant = "item",
+	group,
+	value,
+	checked = false,
+	pips,
+	badge,
+	caption,
+	effect,
+} = Astro.props;
+---
+
+<div class="toggle-wrapper">
+	<input
+		type={variant === "rank" ? "radio" : "checkbox"}
+		{id}
+		name={group}
+		{value}
+		{checked}
+	/>
+	<label for={id} class:list={["toggle", variant]}>
+		{badge && <span class="badge">{badge}</span>}
+		{pips}
+		<Image src={image} {alt} width={65} height={65} />
+		{
+			caption && (
+				<span class="caption">
+					<span class="caption-name">{caption}</span>
+					{effect && <span class="caption-effect">{effect}</span>}
+				</span>
+			)
+		}
+	</label>
+</div>
+
+<style>
+	/* The wrapper only groups the input and its label —
+	   `contents` keeps the label a direct flex child of the row. */
+	.toggle-wrapper {
+		display: contents;
+	}
+
+	/* Hidden to the eye but not to the keyboard — `display: none` would drop every
+	   rank and item out of the tab order and make the page unusable without a mouse. */
+	input {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		opacity: 0;
+		pointer-events: none;
+	}
+
+	/* Unselected is greyscale, never faded. Fading it too made the icons disappear
+	   into the busier skins; desaturation alone still reads as "off". */
+	.toggle {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		position: relative;
+		margin-inline: var(--space-xs);
+		color: rgba(255, 255, 255, 0.9);
+		cursor: pointer;
+		filter: grayscale(1);
+		transition: filter var(--transition);
+	}
+
+	.toggle:hover {
+		filter: grayscale(0.4);
+	}
+
+	input:checked + .toggle {
+		filter: grayscale(0);
+	}
+
+	.toggle :global(img) {
+		width: 45px;
+		height: 45px;
+		aspect-ratio: 1;
+		border: 3px solid var(--color-primary);
+		transition: border-width var(--transition), border-color 0.2s ease,
+			box-shadow var(--transition);
+	}
+
+	/* The selected ring. Unselected icons are grey and flat, selected ones are in
+	   colour and lit — two cues, so the state survives a busy skin behind it. */
+	input:checked + .toggle :global(img) {
+		box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.55),
+			0 0 12px color-mix(in srgb, var(--color-primary) 70%, transparent);
+	}
+
+	input:focus-visible + .toggle :global(img) {
+		outline: 3px solid #fff;
+		outline-offset: 3px;
+	}
+
+	.item :global(img) {
+		border-radius: 50%;
+	}
+
+	/* The name and what it's worth, so neither takes a hover to discover. */
+	.caption {
+		display: grid;
+		justify-items: center;
+		gap: 1px;
+		margin-top: var(--space-xs);
+		line-height: 1.2;
+		text-align: center;
+	}
+
+	.caption-name {
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: rgba(255, 255, 255, 0.85);
+	}
+
+	/* Fixed gold rather than the skin accent — the accent is sampled from the
+	   artwork and can land on a dark brown that vanishes against the panel. */
+	.caption-effect {
+		font-size: 0.7rem;
+		font-weight: 700;
+		color: #f0c57a;
+		font-variant-numeric: tabular-nums;
+	}
+
+	.rank :global(img) {
+		border-radius: var(--border-radius);
+		position: relative;
+	}
+
+	.badge {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 1;
+		font-size: clamp(1.25rem, 4vw, 1.75rem);
+		font-weight: 900;
+		line-height: 1;
+		color: white;
+		text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.6);
+		pointer-events: none;
+	}
+
+	@media screen and (min-width: 768px) {
+		.toggle :global(img) {
+			width: 65px;
+			height: 65px;
+			border-width: 4px;
+		}
+	}
+</style>

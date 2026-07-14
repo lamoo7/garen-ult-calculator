@@ -21,6 +21,10 @@ jobs:
         uses: withastro/action@v3
         with:
           path: .
+          # The action still defaults to Node 20, which Astro 7 refuses to run on
+          # ("not supported by Astro! Please upgrade to >=22.12.0"). Keep this at or
+          # above the `engines.node` floor of whatever Astro version is installed.
+          node-version: 22
 
   deploy:
     needs: build

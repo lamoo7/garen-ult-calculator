@@ -1,13 +1,12 @@
-import ColorThief, { type Rgb } from "colorthief/dist/color-thief.mjs";
+import { getPaletteSync, type Color } from "colorthief";
 
 const PALETTE_SIZE = 5;
 
 /** Distance between the strongest and weakest channel — a cheap stand-in for saturation. */
-const vibrance = ([red, green, blue]: Rgb): number =>
-	Math.max(red, green, blue) - Math.min(red, green, blue);
-
-const toHex = (rgb: Rgb): string =>
-	`#${rgb.map((channel) => channel.toString(16).padStart(2, "0")).join("")}`;
+const vibrance = (colour: Color): number => {
+	const [red, green, blue] = colour.array();
+	return Math.max(red, green, blue) - Math.min(red, green, blue);
+};
 
 /**
  * Re-themes the page around the most vibrant colour in `image`, so the accent
@@ -17,13 +16,14 @@ const toHex = (rgb: Rgb): string =>
 export function applyAccentFrom(image: HTMLImageElement): void {
 	const apply = () => {
 		try {
-			const palette = new ColorThief().getPalette(image, PALETTE_SIZE);
+			const palette = getPaletteSync(image, { colorCount: PALETTE_SIZE });
+			if (!palette) return;
 			const accent = palette.reduce((best, colour) =>
 				vibrance(colour) > vibrance(best) ? colour : best,
 			);
 			document.documentElement.style.setProperty(
 				"--color-primary",
-				toHex(accent),
+				accent.hex(),
 			);
 		} catch (error) {
 			console.error("Color extraction failed:", error);

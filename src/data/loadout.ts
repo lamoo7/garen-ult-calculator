@@ -26,9 +26,9 @@ import lastImg from "../assets/img/last.webp";
 
 /** Ult damage: `base` flat, plus `missingHealthPercent` of the health the enemy is missing. */
 export const ULT_RANKS: UltRank[] = [
-	{ rank: 1, base: 125, missingHealthPercent: 25, pips: "•", previous: { base: 150 } },
-	{ rank: 2, base: 200, missingHealthPercent: 30, pips: "••", previous: { base: 250 } },
-	{ rank: 3, base: 275, missingHealthPercent: 35, pips: "•••", previous: { base: 350 } },
+	{ rank: 1, base: 125, missingHealthPercent: 25, pips: "•", /* previous: { base: 0, missingHealthPercent: 0 } */ },
+	{ rank: 2, base: 200, missingHealthPercent: 30, pips: "••", /* previous: { base: 0, missingHealthPercent: 0 } */ },
+	{ rank: 3, base: 275, missingHealthPercent: 35, pips: "•••", /* previous: { base: 0, missingHealthPercent: 0 } */ },
 ];
 
 /** Items and runes, in the order they appear on the page. `short` is the caption
